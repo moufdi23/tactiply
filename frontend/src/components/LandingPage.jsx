@@ -39,24 +39,30 @@ const EXAMPLES = [
   'I provide personal training from my home gym',
 ];
 
+// access: 'full' | 'partial' | 'locked'
 const PRICING_FREE = [
-  '3 marketing strategies per month',
-  'All 7 strategy sections included',
-  'PDF export',
-  'Email templates',
-  'SEO keyword research',
-  'Basic support',
+  { text: '1 strategy per week',                access: 'full'    },
+  { text: 'Target Audience — full access',       access: 'full'    },
+  { text: 'Social Media Strategy — full access', access: 'full'    },
+  { text: '30-Day Content Calendar — full',      access: 'full'    },
+  { text: 'Email Templates — first only',        access: 'partial' },
+  { text: 'Marketing Score — number only',       access: 'partial' },
+  { text: 'Ad Copy',                             access: 'locked'  },
+  { text: 'SEO Keywords',                        access: 'locked'  },
+  { text: 'Competitor Analysis',                 access: 'locked'  },
 ];
 
 const PRICING_PRO = [
-  'Unlimited strategies',
-  'Priority Claude AI processing',
-  'PDF + DOCX export',
-  'White-label PDF reports',
-  '30-day advanced content calendar',
-  'Google & Facebook ad copy',
-  'Priority email support',
-  'New features first',
+  { text: 'Unlimited strategies',                      highlight: true  },
+  { text: 'Everything in Free plan',                   highlight: false },
+  { text: 'Full Marketing Score + breakdown + Quick Wins', highlight: false },
+  { text: 'All 3 email templates',                     highlight: false },
+  { text: 'Ad Copy — Google & Facebook previews',      highlight: false },
+  { text: 'Full SEO Keywords breakdown',               highlight: false },
+  { text: 'Competitor Analysis',                       highlight: false },
+  { text: 'Regenerate any section',                    highlight: false },
+  { text: 'Zero ads',                                  highlight: false },
+  { text: 'PDF export',                               highlight: false },
 ];
 
 // ── Hooks ──────────────────────────────────────────────────────────────────
@@ -101,6 +107,25 @@ function Check({ dark }) {
   return (
     <svg className={`w-5 h-5 flex-shrink-0 ${dark ? 'text-emerald-300' : 'text-emerald-500'}`} fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+  );
+}
+
+function Lock() {
+  return (
+    <svg className="w-4 h-4 flex-shrink-0 text-gray-300" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+      <rect x="5" y="11" width="14" height="10" rx="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M8 11V7a4 4 0 0 1 8 0v4" />
+    </svg>
+  );
+}
+
+// Amber circle-minus: signals "partial access — something is included but limited"
+function PartialCheck() {
+  return (
+    <svg className="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" style={{ color: '#f59e0b' }}>
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2.2" />
+      <path d="M8 12h8" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
     </svg>
   );
 }
@@ -239,7 +264,7 @@ function MockDashboard({ visible }) {
 
 // ── Main Component ─────────────────────────────────────────────────────────
 
-export default function LandingPage({ onGetStarted, error, onClearError }) {
+export default function LandingPage({ onGetStarted, error, onClearError, canGenerate = true, isDemo = false }) {
   const [showModal, setShowModal]   = useState(false);
   const [business, setBusiness]     = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -488,8 +513,18 @@ export default function LandingPage({ onGetStarted, error, onClearError }) {
               </div>
               <ul className="space-y-3 mb-8">
                 {PRICING_FREE.map(item => (
-                  <li key={item} className="flex items-center gap-3 text-gray-600 text-sm">
-                    <Check /> {item}
+                  <li key={item.text} className="flex items-center gap-3 text-sm"
+                    style={{ color: item.access === 'locked' ? '#d1d5db' : item.access === 'partial' ? '#6b7280' : '#4b5563' }}>
+                    {item.access === 'locked'  && <Lock />}
+                    {item.access === 'partial' && <PartialCheck />}
+                    {item.access === 'full'    && <Check />}
+                    <span>{item.text}</span>
+                    {item.access === 'locked' && (
+                      <span className="ml-auto text-[10px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded"
+                        style={{ background: '#f3f4f6', color: '#9ca3af' }}>
+                        Pro
+                      </span>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -518,15 +553,17 @@ export default function LandingPage({ onGetStarted, error, onClearError }) {
               </div>
               <ul className="space-y-3 mb-8">
                 {PRICING_PRO.map(item => (
-                  <li key={item} className="flex items-center gap-3 text-sm" style={{ color: '#d1fae5' }}>
-                    <Check dark /> {item}
+                  <li key={item.text} className="flex items-center gap-3 text-sm"
+                    style={{ color: item.highlight ? '#ffffff' : '#d1fae5', fontWeight: item.highlight ? 800 : 400 }}>
+                    <Check dark />
+                    {item.text}
                   </li>
                 ))}
               </ul>
               <button onClick={openModal}
                 className="w-full py-4 rounded-2xl font-bold text-base text-emerald-700 transition-all hover:scale-[1.02]"
                 style={{ background: '#ffffff', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
-                Start Pro Trial →
+                Join Waitlist →
               </button>
             </div>
           </div>
@@ -662,49 +699,93 @@ export default function LandingPage({ onGetStarted, error, onClearError }) {
               ✕
             </button>
 
-            <div className="text-center mb-7">
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl font-black text-white mx-auto mb-4"
-                style={{ background: 'linear-gradient(135deg,#10B981,#059669)', boxShadow: '0 8px 24px rgba(16,185,129,0.35)' }}>
-                M
-              </div>
-              <h2 className="text-2xl font-black text-gray-900">Tell us about your business</h2>
-              <p className="text-gray-400 mt-1.5 text-sm">One sentence is all we need to build your strategy</p>
-            </div>
+            {canGenerate ? (
+              /* ── Normal flow ── */
+              <>
+                <div className="text-center mb-7">
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl font-black text-white mx-auto mb-4"
+                    style={{ background: 'linear-gradient(135deg,#10B981,#059669)', boxShadow: '0 8px 24px rgba(16,185,129,0.35)' }}>
+                    M
+                  </div>
+                  <h2 className="text-2xl font-black text-gray-900">Tell us about your business</h2>
+                  <p className="text-gray-400 mt-1.5 text-sm">One sentence is all we need to build your strategy</p>
+                </div>
 
-            <form onSubmit={handleSubmit}>
-              <textarea
-                value={business}
-                onChange={e => setBusiness(e.target.value)}
-                placeholder="e.g., I run a small bakery that specializes in custom wedding cakes in Chicago…"
-                className="w-full rounded-2xl px-5 py-4 text-gray-900 text-base placeholder-gray-300 resize-none focus:outline-none transition-all"
-                style={{ background: '#f9fafb', border: '1.5px solid #e5e7eb' }}
-                rows={4}
-                maxLength={300}
-                autoFocus
-                onFocus={e => (e.target.style.borderColor = '#10B981')}
-                onBlur={e  => (e.target.style.borderColor = '#e5e7eb')}
-              />
+                <form onSubmit={handleSubmit}>
+                  <textarea
+                    value={business}
+                    onChange={e => setBusiness(e.target.value)}
+                    placeholder="e.g., I run a small bakery that specializes in custom wedding cakes in Chicago…"
+                    className="w-full rounded-2xl px-5 py-4 text-gray-900 text-base placeholder-gray-300 resize-none focus:outline-none transition-all"
+                    style={{ background: '#f9fafb', border: '1.5px solid #e5e7eb' }}
+                    rows={4}
+                    maxLength={300}
+                    autoFocus
+                    onFocus={e => (e.target.style.borderColor = '#10B981')}
+                    onBlur={e  => (e.target.style.borderColor = '#e5e7eb')}
+                  />
 
-              <div className="flex items-center justify-between mt-2 mb-2">
-                <p className="text-gray-400 text-xs">Try an example:</p>
-                <span className="text-gray-400 text-xs">{business.length}/300</span>
-              </div>
-              <div className="flex flex-wrap gap-2 mb-6">
-                {EXAMPLES.map((ex, i) => (
-                  <button key={i} type="button" onClick={() => setBusiness(ex)}
-                    className="text-xs rounded-full px-3 py-1.5 transition-all hover:border-emerald-400 hover:text-emerald-700"
-                    style={{ background: '#ECFDF5', border: '1px solid #A7F3D0', color: '#065F46' }}>
-                    {ex.slice(0, 32)}…
+                  <div className="flex items-center justify-between mt-2 mb-2">
+                    <p className="text-gray-400 text-xs">Try an example:</p>
+                    <span className="text-gray-400 text-xs">{business.length}/300</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {EXAMPLES.map((ex, i) => (
+                      <button key={i} type="button" onClick={() => setBusiness(ex)}
+                        className="text-xs rounded-full px-3 py-1.5 transition-all hover:border-emerald-400 hover:text-emerald-700"
+                        style={{ background: '#ECFDF5', border: '1px solid #A7F3D0', color: '#065F46' }}>
+                        {ex.slice(0, 32)}…
+                      </button>
+                    ))}
+                  </div>
+
+                  <button type="submit"
+                    disabled={!business.trim() || submitting}
+                    className="emerald-btn w-full py-4 rounded-2xl text-lg font-black disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none">
+                    <span>{submitting ? 'Analyzing your business…' : 'Generate My Strategy →'}</span>
                   </button>
-                ))}
-              </div>
+                </form>
+              </>
+            ) : (
+              /* ── Weekly limit reached ── */
+              <div className="text-center py-2">
+                <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-5"
+                  style={{ background: '#FEF3C7', border: '1.5px solid #FDE68A' }}>
+                  🗓️
+                </div>
+                <h2 className="text-2xl font-black text-gray-900 mb-2">You're on a roll!</h2>
+                <p className="text-gray-600 text-sm leading-relaxed mb-1">
+                  You've used your free strategy for this week.
+                </p>
+                <p className="text-gray-400 text-xs mb-7">
+                  Free plan · 1 strategy per week · Resets every Monday
+                </p>
 
-              <button type="submit"
-                disabled={!business.trim() || submitting}
-                className="emerald-btn w-full py-4 rounded-2xl text-lg font-black disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none">
-                <span>{submitting ? 'Analyzing your business…' : 'Generate My Strategy →'}</span>
-              </button>
-            </form>
+                <a
+                  href="#"
+                  onClick={e => e.preventDefault()}
+                  className="block w-full py-4 rounded-2xl font-black text-base text-white text-center transition-all hover:scale-[1.02] mb-4"
+                  style={{
+                    background: 'linear-gradient(135deg,#10B981,#059669)',
+                    boxShadow: '0 4px 20px rgba(16,185,129,0.3)',
+                    textDecoration: 'none',
+                  }}>
+                  Join Pro Waitlist — Unlimited Strategies →
+                </a>
+
+                <div className="rounded-xl px-4 py-3 text-sm"
+                  style={{ background: '#f9fafb', border: '1px solid #e5e7eb' }}>
+                  <p className="font-semibold text-gray-700 mb-1">What's included in Pro:</p>
+                  <p className="text-gray-500 text-xs leading-relaxed">
+                    Unlimited strategies · All 7 sections · Ad Copy · SEO Keywords · Marketing Score · Zero ads · PDF export
+                  </p>
+                </div>
+
+                <p className="text-gray-400 text-xs mt-5">
+                  Or come back Monday for your next free strategy 😊
+                </p>
+              </div>
+            )}
           </div>
         </div>
       )}

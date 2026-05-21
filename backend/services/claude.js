@@ -3,15 +3,11 @@ const Anthropic = require('@anthropic-ai/sdk');
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 function extractJSON(text) {
-  // Try fenced code block first
   const codeBlock = text.match(/```(?:json)?\s*([\s\S]*?)```/);
   if (codeBlock) {
     try { return JSON.parse(codeBlock[1].trim()); } catch {}
   }
 
-  // Walk the string character-by-character to find the first complete
-  // JSON object or array, counting braces so we stop at exactly the
-  // right closing delimiter — not at the last } in the whole response.
   const startObj = text.indexOf('{');
   const startArr = text.indexOf('[');
   let start = -1;
@@ -191,11 +187,147 @@ Quick Wins (implement this week):
 1. [specific actionable win]
 2. [specific actionable win]
 3. [specific actionable win]
-4. [specific actionable win]`,
+4. [specific actionable win]
+5. [specific actionable win]
+6. [specific actionable win]
+7. [specific actionable win]`,
     }],
   });
 
   return msg.content[0].text;
 }
 
-module.exports = { generateQuestions, generateStrategy };
+async function generateCompetitorAnalysis(businessDescription, answers, competitorName) {
+  const qa = answers.length > 0
+    ? '\n\nBusiness context from owner:\n' + answers.map(a => `Q: ${a.question}\nA: ${a.answer}`).join('\n\n')
+    : '';
+
+  const msg = await client.messages.create({
+    model: 'claude-sonnet-4-6',
+    max_tokens: 2000,
+    messages: [{
+      role: 'user',
+      content: `You are a senior marketing strategist. Write a highly specific competitive positioning strategy.
+
+Business: "${businessDescription}"${qa}
+
+Competitor to analyze: "${competitorName}"
+
+Write in markdown with ## section headers. Be specific — name both businesses by name, reference real competitive dynamics. No generic advice.
+
+## Their Strengths
+3-4 bullet points on what ${competitorName} does well and why customers choose them.
+
+## Their Weaknesses & Gaps
+3-4 bullet points on where ${competitorName} falls short or what they leave on the table.
+
+## Your Competitive Advantages
+3-4 specific ways this business is better positioned or differentiated from ${competitorName}.
+
+## Positioning Strategy
+How to position against ${competitorName} — key messaging, brand angle, and the core value proposition that wins.
+
+## 5 Tactics to Win Their Customers
+Numbered list of 5 specific, actionable steps to attract people currently using ${competitorName}.`,
+    }],
+  });
+
+  return msg.content[0].text;
+}
+
+// Section-specific regeneration prompts
+const REGEN_PROMPTS = {
+  target: `Write a Target Audience profile using 4-6 bullet points covering: demographics (age/gender/location/income), lifestyle and values, top 3 pain points, buying motivations, online habits. Start directly with bullet points — no intro text.`,
+
+  social: `Write a Social Media Strategy. Use **Instagram:**, **Facebook:**, and **TikTok:** as bold headers. For each: strategy overview, 5 specific content ideas as bullets, posting frequency and best times. Start directly — no intro text.`,
+
+  calendar: `Write a 30-Day Content Calendar. Use this format for each week:
+**Week [N] – [Theme Name]:**
+- Day [N] | [Platform] | [Specific post description]
+(4 entries per week, 4 weeks total)
+Start directly with Week 1 — no intro text.`,
+
+  email: `Write 3 email marketing templates:
+1. Welcome Email
+Subject: [subject]
+Body: [3-4 sentences]
+
+2. Promotional Offer
+Subject: [subject]
+Body: [3-4 sentences]
+
+3. Re-engagement Email
+Subject: [subject]
+Body: [3-4 sentences]
+
+Start directly with "1. Welcome Email" — no intro text.`,
+
+  ads: `Write ad copy. Format:
+**Google Search Ads**
+Headlines (4, each under 30 chars):
+- [headline]
+Descriptions (2, each under 90 chars):
+- [description]
+
+**Facebook/Instagram Ad**
+Headline: [headline]
+Body: [2-3 sentence copy]
+CTA Button: [button text]
+
+Start directly — no intro text.`,
+
+  seo: `Write SEO keywords organized as:
+**Primary (3-4 keywords):**
+- [keyword]
+
+**Secondary (4-5 keywords):**
+- [keyword]
+
+**Long-tail phrases (5-6 phrases):**
+- [phrase]
+
+Start directly — no intro text.`,
+
+  score: `Write a Marketing Score section:
+Overall Score: [N]/100
+
+Breakdown:
+- Brand Clarity: [N]/100
+- Target Precision: [N]/100
+- Content Strategy: [N]/100
+- Digital Presence: [N]/100
+- Growth Potential: [N]/100
+
+Explanation: [2-3 sentences]
+
+Quick Wins (implement this week):
+1-7. [7 specific actionable items]
+
+Start directly — no intro text.`,
+};
+
+async function regenerateSection(businessDescription, answers, sectionKey) {
+  const qa = answers.length > 0
+    ? '\n\nBusiness context:\n' + answers.map(a => `Q: ${a.question}\nA: ${a.answer}`).join('\n\n')
+    : '';
+
+  const instruction = REGEN_PROMPTS[sectionKey]
+    || 'Write fresh marketing content for this business section. Be highly specific.';
+
+  const msg = await client.messages.create({
+    model: 'claude-sonnet-4-6',
+    max_tokens: 2500,
+    messages: [{
+      role: 'user',
+      content: `Business: "${businessDescription}"${qa}
+
+${instruction}
+
+Be highly specific to this exact business — no generic advice.`,
+    }],
+  });
+
+  return msg.content[0].text;
+}
+
+module.exports = { generateQuestions, generateStrategy, generateCompetitorAnalysis, regenerateSection };
