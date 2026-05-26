@@ -5,17 +5,17 @@
 * { box-sizing: border-box; }
 
 body {
-  background-color: #030318;
-  color: #111827;
-  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  background-color: #f8fafc;
+  color: #0f172a;
+  font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
 }
 
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #f0fdf4; }
-::-webkit-scrollbar-thumb { background: #10B981; border-radius: 3px; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
 
 /* ── Emerald gradient text ── */
 .gradient-text {
@@ -28,22 +28,22 @@ body {
 /* ── Feature card (light theme, green glow on hover) ── */
 .feature-card {
   background: #ffffff;
-  border: 1.5px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
   border-radius: 1rem;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
 }
 .feature-card:hover {
   border-color: #10B981;
-  box-shadow: 0 0 0 3px rgba(16,185,129,0.12), 0 12px 40px rgba(16,185,129,0.1);
-  transform: translateY(-4px);
+  box-shadow: 0 0 0 3px rgba(16,185,129,0.1), 0 12px 32px rgba(16,185,129,0.08);
+  transform: translateY(-3px);
 }
 
 /* ── Emerald CTA button ── */
 .emerald-btn {
-  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
   color: #ffffff;
-  box-shadow: 0 4px 20px rgba(16,185,129,0.38), 0 2px 8px rgba(5,150,105,0.2);
-  transition: box-shadow 0.25s ease, transform 0.2s ease;
+  box-shadow: 0 4px 16px rgba(5,150,105,0.32), 0 2px 6px rgba(5,150,105,0.18);
+  transition: box-shadow 0.22s ease, transform 0.18s ease;
   position: relative;
   overflow: hidden;
 }
@@ -51,15 +51,15 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  background: linear-gradient(135deg, #047857 0%, #065F46 100%);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.25s ease;
 }
 .emerald-btn span { position: relative; z-index: 1; }
 .emerald-btn:hover::before { opacity: 1; }
 .emerald-btn:hover {
-  box-shadow: 0 8px 32px rgba(16,185,129,0.5), 0 4px 16px rgba(5,150,105,0.3);
-  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(5,150,105,0.45), 0 4px 12px rgba(5,150,105,0.28);
+  transform: translateY(-1px);
 }
 .emerald-btn:active { transform: translateY(0); }
 
@@ -69,32 +69,32 @@ body {
   color: #ffffff;
   border: 1.5px solid rgba(255,255,255,0.35);
   backdrop-filter: blur(8px);
-  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+  transition: background 0.22s ease, border-color 0.22s ease, transform 0.18s ease;
 }
 .outline-white-btn:hover {
   background: rgba(255,255,255,0.22);
   border-color: rgba(255,255,255,0.6);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 /* ── Pricing cards ── */
 .pricing-card {
   background: #ffffff;
-  border: 1.5px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
   border-radius: 1.5rem;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  transition: box-shadow 0.28s ease, transform 0.28s ease;
 }
 .pricing-card:hover {
-  box-shadow: 0 16px 48px rgba(0,0,0,0.1);
-  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.09);
+  transform: translateY(-3px);
 }
 .pricing-card.featured {
   background: linear-gradient(155deg, #065F46 0%, #047857 60%, #059669 100%);
   border-color: transparent;
-  box-shadow: 0 20px 60px rgba(6,95,70,0.35);
+  box-shadow: 0 16px 52px rgba(6,95,70,0.32);
 }
 .pricing-card.featured:hover {
-  box-shadow: 0 28px 70px rgba(6,95,70,0.45);
+  box-shadow: 0 24px 64px rgba(6,95,70,0.42);
 }
 
 /* ── Ticker ── */
@@ -110,44 +110,70 @@ body {
 .ticker-track {
   display: flex;
   width: max-content;
-  animation: ticker 30s linear infinite;
+  animation: ticker 32s linear infinite;
 }
 .ticker-track:hover { animation-play-state: paused; }
 
 /* ── Scroll reveal ── */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1),
-              transform 0.65s cubic-bezier(0.22,1,0.36,1);
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1),
+              transform 0.6s cubic-bezier(0.22,1,0.36,1);
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* ── Strategy result card ── */
 .result-card {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-left: 4px solid #10B981;
-  border-radius: 1rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #e2e8f0;
+  border-left: 3px solid #10B981;
+  border-radius: 0.875rem;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 .result-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 36px rgba(0,0,0,0.09);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
 }
 
 /* ── Mock dashboard card ── */
 .mock-card {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+}
+
+/* ── Sidebar nav item ── */
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  text-align: left;
+  width: 100%;
+  transition: background 0.15s ease, color 0.15s ease;
+  cursor: pointer;
+  color: #64748b;
+}
+.sidebar-item:hover {
+  background: #f8fafc;
+  color: #0f172a;
+}
+.sidebar-item.active {
+  background: #f0fdf4;
+  color: #065f46;
+  border: 1px solid #bbf7d0;
+  font-weight: 600;
 }
 
 /* ── Animations ── */
 @keyframes slideUp {
-  from { transform: translateY(28px); opacity: 0; }
+  from { transform: translateY(22px); opacity: 0; }
   to   { transform: translateY(0);    opacity: 1; }
 }
 @keyframes fadeIn {
@@ -162,27 +188,34 @@ body {
   to { transform: rotate(360deg); }
 }
 @keyframes floatBob {
-  0%, 100% { transform: translateY(0);   }
-  50%       { transform: translateY(-10px); }
+  0%, 100% { transform: translateY(0);    }
+  50%       { transform: translateY(-8px); }
 }
 @keyframes shimmer {
   0%   { background-position: -200% 0; }
   100% { background-position:  200% 0; }
 }
-@keyframes dashIn {
-  from { stroke-dashoffset: 251; }
-  to   { stroke-dashoffset: 32; }
+@keyframes sectionFade {
+  from { opacity: 0; transform: translateX(8px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
-.animate-slide-up  { animation: slideUp 0.55s cubic-bezier(0.22,1,0.36,1) forwards; }
-.animate-fade-in   { animation: fadeIn 0.4s ease forwards; }
-.animate-blink     { animation: blink 1s step-end infinite; }
-.animate-spin-slow { animation: spin-slow 3s linear infinite; }
-.animate-spin-rev  { animation: spin-slow 2s linear infinite reverse; }
-.animate-float     { animation: floatBob 5s ease-in-out infinite; }
+.animate-slide-up   { animation: slideUp 0.48s cubic-bezier(0.22,1,0.36,1) forwards; }
+.animate-fade-in    { animation: fadeIn 0.35s ease forwards; }
+.animate-blink      { animation: blink 1s step-end infinite; }
+.animate-spin-slow  { animation: spin-slow 3s linear infinite; }
+.animate-spin-rev   { animation: spin-slow 2s linear infinite reverse; }
+.animate-float      { animation: floatBob 5s ease-in-out infinite; }
+.animate-section-in { animation: sectionFade 0.32s cubic-bezier(0.22,1,0.36,1) forwards; }
 
 .shimmer-bar {
   background: linear-gradient(90deg, #10B981 0%, #34d399 50%, #10B981 100%);
   background-size: 200% 100%;
   animation: shimmer 1.8s linear infinite;
+}
+
+/* ── Glow button (dark theme) ── */
+.glow-btn {
+  background: linear-gradient(135deg, #7c3aed, #3b82f6);
+  box-shadow: 0 0 10px rgba(124,58,237,0.4);
 }

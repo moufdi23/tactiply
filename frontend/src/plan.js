@@ -1,7 +1,7 @@
 // ── plan.js ────────────────────────────────────────────────────────────────
 // Usage-tracking and plan logic.
-// All reads are synchronous (localStorage + URL params), so this module
-// can be called anywhere in the render cycle without hooks.
+// All reads are synchronous (localStorage), so this module can be called
+// anywhere in the render cycle without hooks.
 
 // Returns the ISO date of the Monday that started the current week.
 // This is our weekly reset anchor — free usage refreshes every Monday.
@@ -15,8 +15,24 @@ function getWeekKey() {
   return monday.toISOString().slice(0, 10);  // "YYYY-MM-DD"
 }
 
-const STORAGE_KEY = 'mg_usage';
-const FREE_LIMIT  = 1; // strategies per week on the free plan
+const STORAGE_KEY  = 'mg_usage';
+const FOUNDER_KEY  = 'mg_founder';   // sessionStorage key — clears on browser close
+const FREE_LIMIT   = 1;              // strategies per week on the free plan
+
+/** True if founder mode is active in this browser session. */
+export function isFounderActive() {
+  try { return sessionStorage.getItem(FOUNDER_KEY) === 'active'; } catch { return false; }
+}
+
+/** Activate founder mode for this browser session. */
+export function activateFounder() {
+  try { sessionStorage.setItem(FOUNDER_KEY, 'active'); } catch {}
+}
+
+/** Deactivate founder mode (clears from session). */
+export function deactivateFounder() {
+  try { sessionStorage.removeItem(FOUNDER_KEY); } catch {}
+}
 
 function readUsage() {
   try {
@@ -51,10 +67,12 @@ export function getPlan() {
   const weekKey       = getWeekKey();
   const usage         = readUsage();
   const thisWeekCount = usage.weekKey === weekKey ? usage.count : 0;
-  const canGenerate   = thisWeekCount < FREE_LIMIT;
+  // Founder mode bypasses the weekly limit for the current browser session.
+  const canGenerate   = isFounderActive() || thisWeekCount < FREE_LIMIT;
 
   function recordUsage() {
-    const fresh = readUsage(); // re-read to avoid stale closure in async handlers
+    if (isFounderActive()) return; // founders never consume quota
+    const fresh = readUsage();
     const count = fresh.weekKey === weekKey ? fresh.count : 0;
     writeUsage(weekKey, count + 1);
   }

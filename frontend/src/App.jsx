@@ -4,6 +4,7 @@ import ConversationFlow from './components/ConversationFlow';
 import StrategyResults from './components/StrategyResults';
 import LoadingScreen   from './components/LoadingScreen';
 import WaitlistModal   from './components/WaitlistModal';
+import FounderMode    from './components/FounderMode';
 import { getPlan }     from './plan';
 import {
   SAMPLE_BUSINESS,
@@ -181,7 +182,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#030318]">
+    <div className="min-h-screen" style={{ background: '#f8fafc' }}>
       {phase === 'landing' && (
         <LandingPage
           onGetStarted={handleGetStarted}
@@ -224,6 +225,9 @@ export default function App() {
       {showWaitlist && (
         <WaitlistModal onClose={() => setShowWaitlist(false)} />
       )}
+
+      {/* ── Secret founder access mode (Ctrl+Shift+F) ── */}
+      <FounderMode />
     </div>
   );
 }
