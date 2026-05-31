@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import {
   Target, Smartphone, CalendarDays, Mail, MousePointerClick,
-  Search, BarChart3, MessageSquare, Zap, Rocket,
+  Search, BarChart3, MessageSquare, Zap, Rocket, Swords,
   UtensilsCrossed, Smile, Dumbbell, Coffee, Scale, Home,
   Scissors, Camera, Heart, Leaf, Activity, ChefHat,
   User, MapPin, DollarSign, Lock, ArrowRight, Bot,
   CheckCircle2, Minus, Check, Star,
+  Globe, Send, Rss, Share2,
 } from 'lucide-react';
 
 // ── Constants ──────────────────────────────────────────────────────────────
@@ -32,9 +33,10 @@ const FEATURES = [
   { Icon: Mail,              iconColor: '#06b6d4', bg: '#ECFEFF', bd: '#A5F3FC', title: 'Email Marketing Templates',  desc: 'Professional welcome, promo, and re-engagement email templates — ready to copy and send.' },
   { Icon: MousePointerClick, iconColor: '#059669', bg: '#ECFDF5', bd: '#A7F3D0', title: 'Google & Facebook Ad Copy',  desc: 'High-converting ad headlines and descriptions you can launch today on any budget.' },
   { Icon: Search,            iconColor: '#d97706', bg: '#FFFBEB', bd: '#FDE68A', title: 'SEO Keywords',               desc: 'Primary, secondary, and long-tail keywords to help customers find you on Google.' },
-  { Icon: BarChart3,         iconColor: '#059669', bg: '#F0FDF4', bd: '#BBF7D0', title: 'Marketing Score /100',       desc: 'Understand your marketing strengths and get specific quick wins to improve your score.' },
   { Icon: MessageSquare,     iconColor: '#7c3aed', bg: '#F5F3FF', bd: '#DDD6FE', title: 'Smart AI Conversation',      desc: 'Our AI asks 5 targeted questions specific to your business type — not a generic form.' },
   { Icon: Zap,               iconColor: '#d97706', bg: '#FFFBEB', bd: '#FDE68A', title: 'Done in 60 Seconds',         desc: 'No agency, no consultant, no waiting. Your complete strategy is ready instantly.' },
+  { Icon: BarChart3,         iconColor: '#059669', bg: '#F0FDF4', bd: '#BBF7D0', title: 'Marketing Score /100',       desc: 'Understand your marketing strengths and get specific quick wins to improve your score.' },
+  { Icon: Swords,            iconColor: '#6366f1', bg: '#EEF2FF', bd: '#C7D2FE', title: 'Competitor Analysis',        desc: 'See who you\'re up against, what they do well, and exactly where you can outmaneuver them.' },
 ];
 
 const STEPS = [
@@ -276,6 +278,13 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
   const [showModal, setShowModal]   = useState(false);
   const [business, setBusiness]     = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [scrolled, setScrolled]     = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     if (autoOpen) {
@@ -307,20 +316,39 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
     <div className="min-h-screen overflow-x-hidden" style={{ background: '#f8fafc' }}>
 
       {/* ── Nav ─────────────────────────────────────────────────────── */}
-      <nav className="fixed top-0 w-full z-50 px-5 py-3.5 flex items-center justify-between"
-        style={{ background: 'rgba(248,250,252,0.92)', backdropFilter: 'blur(20px)', borderBottom: '1px solid #e2e8f0' }}>
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white flex-shrink-0"
-            style={{ background: 'linear-gradient(135deg,#059669,#047857)' }}>
-            <Zap className="w-4 h-4" />
+      <nav className="fixed top-0 w-full z-50 transition-all duration-300"
+        style={{
+          background: 'rgba(248,250,252,0.96)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          borderBottom: scrolled ? '1px solid #d1fae5' : '1px solid rgba(226,232,240,0.7)',
+          boxShadow: scrolled ? '0 4px 24px rgba(5,150,105,0.07), 0 1px 6px rgba(0,0,0,0.05)' : 'none',
+        }}>
+        <div className="max-w-6xl mx-auto px-5 py-3.5 flex items-center justify-between">
+          {/* Logo */}
+          <div className="flex items-center gap-2.5 group cursor-default select-none">
+            <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white flex-shrink-0 transition-transform duration-200 group-hover:scale-105"
+              style={{ background: 'linear-gradient(135deg,#059669,#047857)', boxShadow: '0 4px 14px rgba(5,150,105,0.38)' }}>
+              <Zap className="w-4 h-4" />
+            </div>
+            <span className="font-black text-lg tracking-tight text-slate-900 transition-colors duration-200 group-hover:text-emerald-700">
+              MarketGenie
+            </span>
           </div>
-          <span className="font-black text-lg tracking-tight text-slate-900">MarketGenie</span>
-        </div>
-        <div className="flex items-center gap-4">
-          <span className="text-slate-400 text-sm hidden sm:block">Free · No Credit Card</span>
-          <button onClick={openModal} className="emerald-btn px-5 py-2.5 rounded-xl text-sm font-bold">
-            <span>Get Started Free</span>
-          </button>
+          {/* Right side */}
+          <div className="flex items-center gap-3">
+            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold"
+              style={{ background: '#ECFDF5', color: '#065F46', border: '1px solid #A7F3D0' }}>
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              Free · No Credit Card
+            </div>
+            <button onClick={openModal} className="emerald-btn px-5 py-2.5 rounded-xl text-sm font-bold">
+              <span className="flex items-center gap-1.5">
+                Get Started Free
+                <ArrowRight className="w-3.5 h-3.5" />
+              </span>
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -455,10 +483,10 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
               One AI session generates your entire marketing toolkit
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {FEATURES.map((f, i) => (
-              <div key={i} style={rs(featuresVisible, (i % 3) * 70)}
-                className="feature-card p-6 cursor-default group">
+              <div key={i} style={rs(featuresVisible, (i % 4) * 70)}
+                className={`feature-card p-6 cursor-default group${i === 8 ? ' lg:col-start-2' : ''}`}>
                 <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110"
                   style={{ background: f.bg, border: `1px solid ${f.bd}` }}>
                   <f.Icon className="w-5 h-5" style={{ color: f.iconColor }} />
@@ -646,56 +674,104 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
         </div>
       </section>
 
+      {/* ── CTA → Footer gradient bridge ────────────────────────────── */}
+      <div aria-hidden="true"
+        style={{ height: 100, background: 'linear-gradient(to bottom, #047857 0%, #0f172a 100%)' }} />
+
       {/* ── Footer ──────────────────────────────────────────────────── */}
-      <footer style={{ background: '#ffffff', borderTop: '1px solid #e2e8f0' }}>
-        <div className="max-w-6xl mx-auto px-6 pt-12 pb-10 grid grid-cols-1 sm:grid-cols-3 gap-10">
-          <div>
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-7 h-7 rounded-lg flex items-center justify-center text-white"
-                style={{ background: 'linear-gradient(135deg,#059669,#047857)' }}>
-                <Zap className="w-3.5 h-3.5" />
+      <footer style={{ background: '#0f172a' }}>
+        {/* Emerald accent line */}
+        <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent 0%, #10b981 50%, transparent 100%)' }} />
+
+        <div className="max-w-6xl mx-auto px-6 pt-14 pb-10">
+          {/* Brand + socials */}
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-8 pb-10 mb-10"
+            style={{ borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+            <div>
+              <div className="flex items-center gap-2.5 mb-3">
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white flex-shrink-0"
+                  style={{ background: 'linear-gradient(135deg,#059669,#047857)', boxShadow: '0 4px 14px rgba(5,150,105,0.4)' }}>
+                  <Zap className="w-4 h-4" />
+                </div>
+                <span className="font-black text-xl tracking-tight text-white">MarketGenie</span>
               </div>
-              <span className="font-black text-base text-slate-900">MarketGenie</span>
+              <p className="text-sm leading-relaxed" style={{ color: '#64748b', maxWidth: 220 }}>
+                AI-powered marketing strategies for small businesses. Free. Instant. No fluff.
+              </p>
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed max-w-[210px]">
-              AI-powered marketing for every business.
-            </p>
-          </div>
-          <div>
-            <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: '#059669' }}>Product</p>
-            <ul className="space-y-2.5">
-              {['How it Works', 'Pricing'].map(link => (
-                <li key={link}>
-                  <a href="#" className="text-sm text-slate-500 hover:text-emerald-600 transition-colors font-medium">
-                    {link}
-                  </a>
-                </li>
+            <div className="flex items-center gap-2.5">
+              {[
+                { Icon: Globe,   label: 'Website'  },
+                { Icon: Send,    label: 'Telegram' },
+                { Icon: Share2,  label: 'Social'   },
+                { Icon: Rss,     label: 'Blog'     },
+              ].map(({ Icon, label }) => (
+                <a key={label} href="#" aria-label={label} className="footer-social">
+                  <Icon className="w-4 h-4" />
+                </a>
               ))}
-              <li>
-                <button onClick={() => { onClearError(); onShowSample(); }}
-                  className="text-sm text-slate-500 hover:text-emerald-600 transition-colors font-medium text-left">
-                  See a Sample
-                </button>
-              </li>
-            </ul>
+            </div>
           </div>
-          <div>
-            <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: '#059669' }}>Company</p>
-            <ul className="space-y-2.5">
-              {['About', 'Contact', 'FAQ', 'Privacy Policy'].map(link => (
-                <li key={link}>
-                  <a href="#" className="text-sm text-slate-500 hover:text-emerald-600 transition-colors font-medium">
-                    {link}
-                  </a>
+
+          {/* Link columns */}
+          <div className="grid grid-cols-2 gap-10 mb-12">
+            <div>
+              <p className="text-xs font-bold tracking-widest uppercase mb-5" style={{ color: '#34d399' }}>Product</p>
+              <ul className="space-y-3.5">
+                {['How it Works', 'Pricing'].map(link => (
+                  <li key={link}>
+                    <a href="#" className="footer-link group flex items-center gap-1.5 text-sm font-medium">
+                      <ArrowRight className="w-3 h-3 text-emerald-400 opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0" />
+                      {link}
+                    </a>
+                  </li>
+                ))}
+                <li>
+                  <button onClick={() => { onClearError(); onShowSample(); }}
+                    className="footer-link group flex items-center gap-1.5 text-sm font-medium text-left">
+                    <ArrowRight className="w-3 h-3 text-emerald-400 opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0" />
+                    See a Sample
+                  </button>
                 </li>
-              ))}
-            </ul>
+              </ul>
+            </div>
+            <div>
+              <p className="text-xs font-bold tracking-widest uppercase mb-5" style={{ color: '#34d399' }}>Company</p>
+              <ul className="space-y-3.5">
+                {['About', 'Contact', 'FAQ', 'Privacy Policy'].map(link => (
+                  <li key={link}>
+                    <a href="#" className="footer-link group flex items-center gap-1.5 text-sm font-medium">
+                      <ArrowRight className="w-3 h-3 text-emerald-400 opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0" />
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </div>
-        <div style={{ borderTop: '1px solid #e2e8f0' }}>
-          <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-            <p className="text-slate-400 text-xs">© 2026 MarketGenie. All rights reserved.</p>
-            <p className="text-slate-400 text-xs">Built by Moufdi · Powered by Claude AI</p>
+
+          {/* Bottom bar */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6"
+            style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+            <p className="text-xs" style={{ color: '#475569' }}>© 2026 MarketGenie. All rights reserved.</p>
+            <div className="flex items-center gap-3 flex-wrap justify-center sm:justify-end">
+              <a
+                href="https://buymeacoffee.com/marketgenie"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-semibold"
+                style={{ color: '#64748b', textDecoration: 'none', transition: 'color 0.2s ease' }}
+                onMouseEnter={e => e.currentTarget.style.color = '#34d399'}
+                onMouseLeave={e => e.currentTarget.style.color = '#64748b'}
+              >
+                Support this project ☕
+              </a>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold"
+                style={{ background: 'rgba(5,150,105,0.12)', border: '1px solid rgba(5,150,105,0.28)', color: '#34d399' }}>
+                <Zap className="w-3 h-3" />
+                Built by Moufdi · Powered by Claude AI
+              </div>
+            </div>
           </div>
         </div>
       </footer>
@@ -787,7 +863,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
                   style={{ background: '#f8fafc', border: '1px solid #e2e8f0' }}>
                   <p className="font-semibold text-slate-700 mb-1 text-xs">What's included in Pro:</p>
                   <p className="text-slate-500 text-xs leading-relaxed">
-                    Unlimited strategies · All 7 sections · Ad Copy · SEO Keywords · Marketing Score · Zero ads · PDF export
+                    Unlimited strategies · All 7 sections · Ad Copy · SEO Keywords · Competitor Analysis · Marketing Score · Zero ads · PDF export
                   </p>
                 </div>
                 <p className="text-slate-400 text-xs mt-4">
