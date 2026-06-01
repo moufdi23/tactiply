@@ -45,7 +45,7 @@ function extractJSON(text) {
 // business strategy, keeps business-type validation broad and inclusive,
 // and defines the friendly redirect for clearly off-topic or adversarial
 // input.
-const MARKETING_SYSTEM_PROMPT = `You are MarketGenie, an expert AI marketing strategist dedicated exclusively to helping small businesses and self-employed individuals grow their business.
+const MARKETING_SYSTEM_PROMPT = `You are Tactiply, an expert AI marketing strategist dedicated exclusively to helping small businesses and self-employed individuals grow their business.
 
 WHAT YOU HELP WITH:
 - Marketing strategies, social media plans, and content calendars

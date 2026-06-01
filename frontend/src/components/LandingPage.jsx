@@ -31,7 +31,7 @@ const FEATURES = [
   { Icon: Smartphone,        iconColor: '#8b5cf6', bg: '#FAF5FF', bd: '#E9D5FF', title: 'Social Media Content',       desc: 'Ready-to-use content ideas for Instagram, Facebook, and TikTok tailored to your specific business.' },
   { Icon: CalendarDays,      iconColor: '#3b82f6', bg: '#EFF6FF', bd: '#BFDBFE', title: '30-Day Content Calendar',    desc: 'A full day-by-day posting schedule so you always know what to post and when.' },
   { Icon: Mail,              iconColor: '#06b6d4', bg: '#ECFEFF', bd: '#A5F3FC', title: 'Email Marketing Templates',  desc: 'Professional welcome, promo, and re-engagement email templates — ready to copy and send.' },
-  { Icon: MousePointerClick, iconColor: '#059669', bg: '#ECFDF5', bd: '#A7F3D0', title: 'Google & Facebook Ad Copy',  desc: 'High-converting ad headlines and descriptions you can launch today on any budget.' },
+  { Icon: MousePointerClick, iconColor: '#059669', bg: '#ECFDF5', bd: '#A7F3D0', title: 'Google & Facebook Ad Copy',  desc: 'Ready-to-use ad headlines and descriptions you can launch today on any budget.' },
   { Icon: Search,            iconColor: '#d97706', bg: '#FFFBEB', bd: '#FDE68A', title: 'SEO Keywords',               desc: 'Primary, secondary, and long-tail keywords to help customers find you on Google.' },
   { Icon: MessageSquare,     iconColor: '#7c3aed', bg: '#F5F3FF', bd: '#DDD6FE', title: 'Smart AI Conversation',      desc: 'Our AI asks 5 targeted questions specific to your business type — not a generic form.' },
   { Icon: Zap,               iconColor: '#d97706', bg: '#FFFBEB', bd: '#FDE68A', title: 'Done in 60 Seconds',         desc: 'No agency, no consultant, no waiting. Your complete strategy is ready instantly.' },
@@ -45,10 +45,49 @@ const STEPS = [
   { n: '03', title: 'Receive Your Full Strategy', desc: 'Get a complete marketing playbook: social content, ad copy, email templates, SEO, and your marketing score.' },
 ];
 
-const TESTIMONIALS = [
-  { name: 'Sarah M.', role: 'Custom Cake Studio', initials: 'SM', color: '#ECFDF5', stars: 5, text: "I spent $2,000 on a marketing consultant and got less than what MarketGenie gave me in 60 seconds. The ad copy alone got me 3 new wedding bookings." },
-  { name: 'James K.', role: 'Personal Trainer',   initials: 'JK', color: '#EFF6FF', stars: 5, text: "My Facebook ads went from zero to 12 new clients in a single month. The targeting advice was spot-on for my exact gym type." },
-  { name: 'Priya L.', role: 'Etsy Jewelry Shop',  initials: 'PL', color: '#FAF5FF', stars: 5, text: "The 30-day content calendar alone saves me 4+ hours a week. I know exactly what to post, when, and why. Total game changer." },
+const OUTCOMES = [
+  {
+    business: 'Sunrise Bakery',
+    type: 'Custom Cake Studio · Chicago',
+    Icon: Coffee,
+    bg: '#ECFDF5', bd: '#A7F3D0', iconColor: '#059669',
+    score: 84,
+    keywords: ['custom wedding cakes', 'cake shop near me', 'birthday cake delivery'],
+    highlights: [
+      { label: 'IG',    lbg: '#fce7f3', lc: '#be185d', text: '"Behind the cake" timelapse reel' },
+      { label: 'Email', lbg: '#dbeafe', lc: '#1d4ed8', text: 'First-time customer welcome sequence' },
+      { label: 'Ads',   lbg: '#ECFDF5', lc: '#065F46', text: 'Google: "custom wedding cakes Chicago"' },
+    ],
+    audience: 'Women 25–44 planning celebrations',
+  },
+  {
+    business: 'Peak Form Gym',
+    type: 'Boutique Fitness Studio · Austin',
+    Icon: Dumbbell,
+    bg: '#EFF6FF', bd: '#BFDBFE', iconColor: '#3b82f6',
+    score: 79,
+    keywords: ['boutique gym near me', 'personal training Austin', 'fitness classes downtown'],
+    highlights: [
+      { label: 'IG',  lbg: '#fce7f3', lc: '#be185d', text: 'Transformation Tuesday member spotlight' },
+      { label: 'FB',  lbg: '#dbeafe', lc: '#1d4ed8', text: 'Free trial class offer carousel' },
+      { label: 'SEO', lbg: '#ECFDF5', lc: '#065F46', text: '"gym near me" + neighborhood terms' },
+    ],
+    audience: 'Health-focused adults 25–40, urban',
+  },
+  {
+    business: 'Bright Smile Dental',
+    type: 'Family Dental Practice · Seattle',
+    Icon: Smile,
+    bg: '#FAF5FF', bd: '#E9D5FF', iconColor: '#8b5cf6',
+    score: 88,
+    keywords: ['dentist near me', 'family dentist Seattle', 'teeth whitening cost'],
+    highlights: [
+      { label: 'Email', lbg: '#dbeafe', lc: '#1d4ed8', text: 'Appointment reminder + review request' },
+      { label: 'Ads',   lbg: '#ECFDF5', lc: '#065F46', text: '"New patient special" search ad' },
+      { label: 'SEO',   lbg: '#F5F3FF', lc: '#7c3aed', text: 'Local map pack optimization tips' },
+    ],
+    audience: 'Families & new residents within 10 miles',
+  },
 ];
 
 const EXAMPLES = [
@@ -154,7 +193,7 @@ function MockDashboard({ visible }) {
         </div>
         <div className="flex-1 rounded-md px-3 py-1 text-center text-xs font-mono text-slate-400"
           style={{ background: '#ffffff', border: '1px solid #e2e8f0' }}>
-          app.marketgenie.ai/strategy/bakery
+          app.tactiply.com/strategy/bakery
         </div>
       </div>
 
@@ -326,13 +365,13 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
         }}>
         <div className="max-w-6xl mx-auto px-5 py-3.5 flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-2.5 group cursor-default select-none">
+          <div className="flex items-center gap-2.5 group cursor-pointer select-none" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white flex-shrink-0 transition-transform duration-200 group-hover:scale-105"
               style={{ background: 'linear-gradient(135deg,#059669,#047857)', boxShadow: '0 4px 14px rgba(5,150,105,0.38)' }}>
               <Zap className="w-4 h-4" />
             </div>
             <span className="font-black text-lg tracking-tight text-slate-900 transition-colors duration-200 group-hover:text-emerald-700">
-              MarketGenie
+              Tactiply
             </span>
           </div>
           {/* Right side */}
@@ -506,7 +545,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
             <div className="text-center mb-12" style={rs(stepsVisible)}>
               <p className="text-xs font-bold tracking-widest uppercase mb-2.5" style={{ color: '#059669' }}>Process</p>
               <h2 className="text-3xl sm:text-4xl font-black mb-3" style={{ color: '#065F46' }}>
-                How MarketGenie Works
+                How Tactiply Works
               </h2>
               <p className="text-slate-500 text-base">From one sentence to a full strategy in 3 steps</p>
             </div>
@@ -619,31 +658,73 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
         </div>
       </section>
 
-      {/* ── Testimonials ────────────────────────────────────────────── */}
+      {/* ── What Gets Generated ─────────────────────────────────────── */}
       <section ref={testimonialsRef} className="py-20 px-6" style={{ background: '#f8fafc' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12" style={rs(testimonialsVisible)}>
-            <p className="text-xs font-bold tracking-widest uppercase mb-2.5" style={{ color: '#059669' }}>Testimonials</p>
-            <h2 className="text-3xl sm:text-4xl font-black mb-2" style={{ color: '#065F46' }}>
-              Real Results from Real<br />Business Owners
+            <p className="text-xs font-bold tracking-widest uppercase mb-2.5" style={{ color: '#059669' }}>Examples</p>
+            <h2 className="text-3xl sm:text-4xl font-black mb-3" style={{ color: '#065F46' }}>
+              What Gets Generated<br />For You
             </h2>
+            <p className="text-slate-500 text-base max-w-lg mx-auto">
+              A snapshot of what the AI builds — tailored to the specific business, not a template.
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {TESTIMONIALS.map((t, i) => (
+            {OUTCOMES.map((c, i) => (
               <div key={i}
-                className="bg-white rounded-2xl p-6 flex flex-col gap-3.5"
+                className="bg-white rounded-2xl p-5 flex flex-col gap-4"
                 style={{ border: '1px solid #e2e8f0', boxShadow: '0 2px 16px rgba(0,0,0,0.04)', ...rs(testimonialsVisible, i * 100) }}>
-                <Stars n={t.stars} />
-                <p className="text-slate-600 leading-relaxed flex-1 text-sm">"{t.text}"</p>
-                <div className="flex items-center gap-3 pt-3.5 border-t border-slate-100">
-                  <div className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-black flex-shrink-0"
-                    style={{ background: t.color, border: '1.5px solid #A7F3D0', color: '#065F46' }}>
-                    {t.initials}
+
+                {/* Card header */}
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ background: c.bg, border: `1px solid ${c.bd}` }}>
+                    <c.Icon className="w-5 h-5" style={{ color: c.iconColor }} />
                   </div>
-                  <div>
-                    <p className="font-bold text-slate-900 text-sm">{t.name}</p>
-                    <p className="text-slate-400 text-xs">{t.role}</p>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-bold text-slate-900 text-sm">{c.business}</p>
+                    <p className="text-slate-400 text-xs truncate">{c.type}</p>
                   </div>
+                  <div className="flex-shrink-0 px-2 py-0.5 rounded-full text-xs font-black"
+                    style={{ background: '#ECFDF5', color: '#065F46', border: '1px solid #A7F3D0' }}>
+                    {c.score}/100
+                  </div>
+                </div>
+
+                {/* SEO keywords */}
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-wider mb-1.5" style={{ color: '#94a3b8' }}>SEO Keywords</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {c.keywords.map(kw => (
+                      <span key={kw} className="text-xs px-2 py-0.5 rounded-full"
+                        style={{ background: '#f8fafc', border: '1px solid #e2e8f0', color: '#475569' }}>
+                        {kw}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Strategy highlights */}
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-wider mb-1.5" style={{ color: '#94a3b8' }}>Strategy Highlights</p>
+                  <div className="space-y-1.5">
+                    {c.highlights.map(h => (
+                      <div key={h.text} className="flex items-center gap-2">
+                        <span className="text-[9px] font-black px-1.5 py-0.5 rounded flex-shrink-0"
+                          style={{ background: h.lbg, color: h.lc }}>
+                          {h.label}
+                        </span>
+                        <span className="text-xs text-slate-500 leading-tight">{h.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Audience */}
+                <div className="flex items-center gap-1.5 pt-3 border-t border-slate-100">
+                  <span className="text-[10px] font-semibold" style={{ color: '#94a3b8' }}>Target:</span>
+                  <span className="text-[10px] text-slate-500">{c.audience}</span>
                 </div>
               </div>
             ))}
@@ -663,7 +744,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
             Ready to Grow<br />Your Business?
           </h2>
           <p className="text-base mb-8 max-w-md mx-auto leading-relaxed" style={{ color: '#a7f3d0' }}>
-            Stop guessing and start growing — AI-powered marketing strategies built for your exact business. No agency, no consultant.
+            Stop guessing and start marketing with a plan — AI-powered strategies built for your exact business. No agency, no consultant.
           </p>
           <button onClick={openModal}
             className="px-12 py-4 rounded-2xl text-lg font-black text-emerald-700 transition-all hover:scale-[1.02]"
@@ -693,7 +774,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
                   style={{ background: 'linear-gradient(135deg,#059669,#047857)', boxShadow: '0 4px 14px rgba(5,150,105,0.4)' }}>
                   <Zap className="w-4 h-4" />
                 </div>
-                <span className="font-black text-xl tracking-tight text-white">MarketGenie</span>
+                <span className="font-black text-xl tracking-tight text-white">Tactiply</span>
               </div>
               <p className="text-sm leading-relaxed" style={{ color: '#64748b', maxWidth: 220 }}>
                 AI-powered marketing strategies for small businesses. Free. Instant. No fluff.
@@ -750,13 +831,26 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
             </div>
           </div>
 
+          {/* Built With */}
+          <div className="mb-10">
+            <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: '#475569' }}>Built With</p>
+            <div className="flex flex-wrap gap-2">
+              {['React', 'JavaScript', 'Tailwind CSS', 'Node.js', 'Express', 'Supabase', 'Claude AI'].map(tech => (
+                <span key={tech} className="text-xs font-medium px-2.5 py-1 rounded-full"
+                  style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#64748b' }}>
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
           {/* Bottom bar */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6"
             style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
-            <p className="text-xs" style={{ color: '#475569' }}>© 2026 MarketGenie. All rights reserved.</p>
+            <p className="text-xs" style={{ color: '#475569' }}>© 2026 Tactiply. All rights reserved.</p>
             <div className="flex items-center gap-3 flex-wrap justify-center sm:justify-end">
               <a
-                href="https://buymeacoffee.com/marketgenie"
+                href="https://buymeacoffee.com/tactiply"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs font-semibold"

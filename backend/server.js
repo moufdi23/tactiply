@@ -18,7 +18,7 @@ app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`MarketGenie backend running on http://localhost:${PORT}`);
+  console.log(`Tactiply backend running on http://localhost:${PORT}`);
   if (!process.env.ANTHROPIC_API_KEY) {
     console.warn('WARNING: ANTHROPIC_API_KEY is not set. Copy .env.example to .env and add your key.');
   }
