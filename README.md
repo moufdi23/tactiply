@@ -295,7 +295,7 @@ I genuinely believe that small business owners deserve access to the same qualit
 
 I'm open to junior full-stack or frontend roles. If you like what you see here, let's connect!
 
-📧 [moufdibensaadoune1@gmail.com](mailto:moufdibensaadoune1@gmail.com)
+📧 [moufdi.bensaadoune.dev@gmail.com](mailto:moufdibensaadoune1@gmail.com)
 🐙 [github.com/moufdi23](https://github.com/moufdi23)
 
 ---
