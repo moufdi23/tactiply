@@ -310,7 +310,7 @@ I'm open to junior full-stack or frontend roles. If you like what you see here, 
 ---
 
 <p align="center">
-  Made with lots of ☕ by <strong>Moufdi Ben Saadoune</strong> with the assistance of Claude Code
+  Made with lots of ☕ by <strong>Moufdi Ben Saadoune</strong>, and the assistance of Claude Code
   <br/>
   <a href="https://tactiply.com">tactiply.com</a> · <a href="https://buymeacoffee.com/tactiply">Buy me a coffee</a>
 </p>
