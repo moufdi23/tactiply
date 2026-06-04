@@ -40,7 +40,7 @@ export default function App() {
     setLoadingMessage('Analyzing your business...');
 
     try {
-      const res = await fetch('/api/questions', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/questions`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ businessDescription: description }),
@@ -85,7 +85,7 @@ export default function App() {
     setLoadingMessage('Building your complete marketing strategy...');
 
     try {
-      const res = await fetch('/api/strategy', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/strategy`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ businessDescription, answers: completedAnswers }),

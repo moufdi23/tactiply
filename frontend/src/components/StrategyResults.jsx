@@ -1037,7 +1037,7 @@ function CompetitorSection({ businessDescription, answers }) {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch('/api/competitor', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/competitor`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ businessDescription, answers, competitorName: competitorName.trim() }),
@@ -1453,7 +1453,7 @@ export default function StrategyResults({ strategy, businessDescription, answers
     if (!isDemo || isSynthetic || isSample) return;
     setRegenerating(activeIdx);
     try {
-      const res = await fetch('/api/regenerate', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/regenerate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ businessDescription, answers, sectionKey: activeMeta.key }),
