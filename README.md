@@ -295,7 +295,7 @@ I genuinely believe that small business owners deserve access to the same qualit
 
 I'm open to junior full-stack or frontend roles. If you like what you see here, let's connect!
 
-📧 [moufdibensaadoune1@gmail.com](mailto:moufdibensaadoune1@gmail.com)
+📧 [moufdi.bensaadoune.dev@gmail.com](mailto:moufdibensaadoune1@gmail.com)
 🐙 [github.com/moufdi23](https://github.com/moufdi23)
 
 ---
@@ -310,7 +310,7 @@ I'm open to junior full-stack or frontend roles. If you like what you see here, 
 ---
 
 <p align="center">
-  Made with ☕ and a lot of Claude prompts by <strong>Moufdi Ben Saadoune</strong>
+  Made with lots of ☕ by <strong>Moufdi Ben Saadoune</strong>, and the assistance of Claude Code
   <br/>
   <a href="https://tactiply.com">tactiply.com</a> · <a href="https://buymeacoffee.com/tactiply">Buy me a coffee</a>
 </p>
