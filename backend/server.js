@@ -5,8 +5,18 @@ const apiRoutes = require('./routes/api');
 
 const app = express();
 
+const ALLOWED_ORIGINS = [
+  'https://tactiply.com',
+  'https://www.tactiply.com',
+  'https://tactiply.vercel.app',
+  'http://localhost:5173',
+];
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: (origin, callback) => {
+    if (!origin || ALLOWED_ORIGINS.includes(origin)) return callback(null, true);
+    callback(new Error(`CORS: origin ${origin} not allowed`));
+  },
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 }));
