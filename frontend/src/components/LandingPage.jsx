@@ -402,7 +402,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
           style={{ background: 'radial-gradient(circle, rgba(6,95,70,0.04) 0%, transparent 70%)', transform: 'translate(-30%,30%)' }} />
 
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center min-h-[calc(100vh-6rem)] pb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center lg:min-h-[calc(100vh-6rem)] pb-16">
 
             {/* Left — text */}
             <div>
@@ -470,7 +470,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
             </div>
 
             {/* Right — mock dashboard */}
-            <div style={rs(heroVisible, 180)} className="relative hidden lg:block">
+            <div style={rs(heroVisible, 180)} className="relative mt-10 lg:mt-0">
               <MockDashboard visible={heroVisible} />
             </div>
           </div>
@@ -494,7 +494,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
       </div>
 
       {/* ── Stats ───────────────────────────────────────────────────── */}
-      <div ref={statsRef} className="py-14" style={{ background: '#f8fafc' }}>
+      <div ref={statsRef} className="py-10 sm:py-14" style={{ background: '#f8fafc' }}>
         <div className="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-8 px-6 text-center">
           {[
             { val: '< 60s', label: 'Generation Time' },
@@ -511,7 +511,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
       </div>
 
       {/* ── Features grid ───────────────────────────────────────────── */}
-      <section ref={featuresRef} className="py-20 px-6" style={{ background: '#ffffff' }}>
+      <section ref={featuresRef} className="py-14 sm:py-20 px-5 sm:px-6" style={{ background: '#ffffff' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12" style={rs(featuresVisible)}>
             <p className="text-xs font-bold tracking-widest uppercase mb-2.5" style={{ color: '#059669' }}>What You Get</p>
@@ -522,15 +522,15 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
               One AI session generates your entire marketing toolkit
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-4">
             {FEATURES.map((f, i) => (
               <div key={i} style={rs(featuresVisible, (i % 4) * 70)}
-                className={`feature-card p-6 cursor-default group${i === 8 ? ' lg:col-start-2' : ''}`}>
+                className={`feature-card p-5 sm:p-6 cursor-default group${i === 8 ? ' lg:col-start-2' : ''}`}>
                 <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110"
                   style={{ background: f.bg, border: `1px solid ${f.bd}` }}>
                   <f.Icon className="w-5 h-5" style={{ color: f.iconColor }} />
                 </div>
-                <h3 className="font-bold text-slate-900 mb-1.5 text-sm">{f.title}</h3>
+                <h3 className="font-bold text-slate-900 mb-2 text-base sm:text-sm">{f.title}</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">{f.desc}</p>
               </div>
             ))}
@@ -539,7 +539,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
       </section>
 
       {/* ── How It Works ────────────────────────────────────────────── */}
-      <section className="py-20 px-6" style={{ background: '#f8fafc' }}>
+      <section className="py-14 sm:py-20 px-5 sm:px-6" style={{ background: '#f8fafc' }}>
         <div className="max-w-2xl mx-auto">
           <div ref={stepsRef}>
             <div className="text-center mb-12" style={rs(stepsVisible)}>
@@ -582,7 +582,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
       </section>
 
       {/* ── Pricing ─────────────────────────────────────────────────── */}
-      <section ref={pricingRef} className="py-20 px-6" style={{ background: '#ffffff' }}>
+      <section ref={pricingRef} className="py-14 sm:py-20 px-5 sm:px-6" style={{ background: '#ffffff' }}>
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12" style={rs(pricingVisible)}>
             <p className="text-xs font-bold tracking-widest uppercase mb-2.5" style={{ color: '#059669' }}>Pricing</p>
@@ -594,7 +594,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* Free */}
-            <div style={rs(pricingVisible, 0)} className="pricing-card p-7">
+            <div style={rs(pricingVisible, 0)} className="pricing-card p-5 sm:p-7">
               <div className="mb-6">
                 <p className="text-xs font-bold tracking-widest uppercase text-slate-400 mb-2">Free</p>
                 <div className="flex items-end gap-1">
@@ -603,7 +603,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
                 </div>
                 <p className="text-slate-500 text-sm mt-1.5">Perfect for getting started</p>
               </div>
-              <ul className="space-y-2.5 mb-7">
+              <ul className="space-y-3 mb-5 sm:mb-7">
                 {PRICING_FREE.map(item => (
                   <li key={item.text} className="flex items-center gap-2.5 text-sm"
                     style={{ color: item.access === 'locked' ? '#cbd5e1' : item.access === 'partial' ? '#64748b' : '#475569' }}>
@@ -626,12 +626,12 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
             </div>
 
             {/* Pro */}
-            <div style={rs(pricingVisible, 100)} className="pricing-card featured p-7 relative overflow-hidden">
-              <div className="absolute top-5 right-5 rounded-full px-3 py-1 text-xs font-bold"
+            <div style={rs(pricingVisible, 100)} className="pricing-card featured p-5 sm:p-7 relative overflow-hidden">
+              <div className="absolute top-4 right-4 sm:top-5 sm:right-5 rounded-full px-3 py-1 text-xs font-bold"
                 style={{ background: 'rgba(255,255,255,0.15)', color: '#d1fae5', border: '1px solid rgba(255,255,255,0.2)' }}>
                 Most Popular
               </div>
-              <div className="mb-6">
+              <div className="mb-6 pt-8 sm:pt-0">
                 <p className="text-xs font-bold tracking-widest uppercase mb-2" style={{ color: '#6ee7b7' }}>Pro</p>
                 <div className="flex items-end gap-1">
                   <span className="text-5xl font-black text-white">$19</span>
@@ -639,7 +639,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
                 </div>
                 <p className="text-sm mt-1.5" style={{ color: '#a7f3d0' }}>For serious business owners</p>
               </div>
-              <ul className="space-y-2.5 mb-7">
+              <ul className="space-y-3 mb-5 sm:mb-7">
                 {PRICING_PRO.map(item => (
                   <li key={item.text} className="flex items-center gap-2.5 text-sm"
                     style={{ color: item.highlight ? '#ffffff' : '#d1fae5', fontWeight: item.highlight ? 800 : 400 }}>
@@ -659,7 +659,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
       </section>
 
       {/* ── What Gets Generated ─────────────────────────────────────── */}
-      <section ref={testimonialsRef} className="py-20 px-6" style={{ background: '#f8fafc' }}>
+      <section ref={testimonialsRef} className="py-14 sm:py-20 px-5 sm:px-6" style={{ background: '#f8fafc' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12" style={rs(testimonialsVisible)}>
             <p className="text-xs font-bold tracking-widest uppercase mb-2.5" style={{ color: '#059669' }}>Examples</p>
@@ -694,7 +694,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
 
                 {/* SEO keywords */}
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-wider mb-1.5" style={{ color: '#94a3b8' }}>SEO Keywords</p>
+                  <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: '#94a3b8' }}>SEO Keywords</p>
                   <div className="flex flex-wrap gap-1.5">
                     {c.keywords.map(kw => (
                       <span key={kw} className="text-xs px-2 py-0.5 rounded-full"
@@ -707,15 +707,15 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
 
                 {/* Strategy highlights */}
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-wider mb-1.5" style={{ color: '#94a3b8' }}>Strategy Highlights</p>
+                  <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: '#94a3b8' }}>Strategy Highlights</p>
                   <div className="space-y-1.5">
                     {c.highlights.map(h => (
                       <div key={h.text} className="flex items-center gap-2">
-                        <span className="text-[9px] font-black px-1.5 py-0.5 rounded flex-shrink-0"
+                        <span className="text-[10px] font-black px-2 py-0.5 rounded flex-shrink-0"
                           style={{ background: h.lbg, color: h.lc }}>
                           {h.label}
                         </span>
-                        <span className="text-xs text-slate-500 leading-tight">{h.text}</span>
+                        <span className="text-xs text-slate-600 leading-tight">{h.text}</span>
                       </div>
                     ))}
                   </div>
@@ -723,8 +723,8 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
 
                 {/* Audience */}
                 <div className="flex items-center gap-1.5 pt-3 border-t border-slate-100">
-                  <span className="text-[10px] font-semibold" style={{ color: '#94a3b8' }}>Target:</span>
-                  <span className="text-[10px] text-slate-500">{c.audience}</span>
+                  <span className="text-xs font-semibold" style={{ color: '#94a3b8' }}>Target:</span>
+                  <span className="text-xs text-slate-500">{c.audience}</span>
                 </div>
               </div>
             ))}
@@ -733,7 +733,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
       </section>
 
       {/* ── CTA Banner ──────────────────────────────────────────────── */}
-      <section ref={ctaRef} className="py-20 px-6"
+      <section ref={ctaRef} className="py-14 sm:py-20 px-5 sm:px-6"
         style={{ background: 'linear-gradient(135deg, #065F46 0%, #047857 55%, #059669 100%)' }}>
         <div style={rs(ctaVisible)} className="max-w-2xl mx-auto text-center">
           <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-7"
