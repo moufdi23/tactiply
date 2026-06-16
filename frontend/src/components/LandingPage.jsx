@@ -402,10 +402,10 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
           style={{ background: 'radial-gradient(circle, rgba(6,95,70,0.04) 0%, transparent 70%)', transform: 'translate(-30%,30%)' }} />
 
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center pb-16">
+          <div className="flex flex-col lg:flex-row gap-10 items-center pb-16">
 
             {/* Left — text */}
-            <div>
+            <div className="w-full lg:flex-1">
               {/* AI Badge */}
               <div style={{ background: '#ECFDF5', border: '1px solid #A7F3D0', color: '#065F46', ...rs(heroVisible, 0) }}
                 className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6 text-sm font-semibold">
@@ -470,7 +470,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
             </div>
 
             {/* Right — mock dashboard */}
-            <div style={rs(heroVisible, 180)} className="relative mt-10 lg:mt-0">
+            <div style={rs(heroVisible, 180)} className="relative w-full lg:flex-1 mt-10 lg:mt-0">
               <MockDashboard visible={heroVisible} />
             </div>
           </div>
