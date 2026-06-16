@@ -402,7 +402,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
           style={{ background: 'radial-gradient(circle, rgba(6,95,70,0.04) 0%, transparent 70%)', transform: 'translate(-30%,30%)' }} />
 
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center lg:min-h-[calc(100vh-6rem)] pb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center pb-16">
 
             {/* Left — text */}
             <div>
