@@ -392,7 +392,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
       </nav>
 
       {/* ── Hero ────────────────────────────────────────────────────── */}
-      <section ref={heroRef} className="relative pt-24 pb-0 px-6 overflow-hidden overflow-x-hidden"
+      <section ref={heroRef} className="relative pt-24 pb-0 px-4 lg:px-6 overflow-hidden overflow-x-hidden"
         style={{ background: 'linear-gradient(160deg, #ECFDF5 0%, #f8fafc 50%)' }}>
 
         {/* Decorative background */}
@@ -414,7 +414,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
               </div>
 
               <h1 style={{ color: '#065F46', ...rs(heroVisible, 70) }}
-                className="text-[2rem] sm:text-5xl lg:text-[3.4rem] font-black leading-[1.15] sm:leading-[1.06] mb-5 tracking-tight">
+                className="text-3xl lg:text-[3.4rem] font-black leading-tight lg:leading-[1.06] mb-5 tracking-tight">
                 Your Complete<br />
                 Marketing Strategy<br />
                 <span className="gradient-text">in 60 Seconds Flat.</span>
@@ -424,21 +424,21 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
                 Describe your business in one sentence. Our AI builds a full marketing playbook — social content, email templates, ad copy, SEO keywords, and your marketing score. Free. Instant.
               </p>
 
-              <div style={rs(heroVisible, 210)} className="flex flex-row gap-2 sm:gap-3 mb-7">
+              <div style={rs(heroVisible, 210)} className="flex flex-row w-full gap-3 mb-7">
                 <button onClick={openModal}
-                  className="emerald-btn flex-1 min-w-0 px-3 sm:px-9 py-3.5 rounded-2xl text-sm sm:text-base font-black whitespace-nowrap">
+                  className="emerald-btn flex-1 px-3 sm:px-9 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-black whitespace-nowrap">
                   <span>Get My Free Strategy</span>
                 </button>
                 <button
                   onClick={() => { onClearError(); onShowSample(); }}
-                  className="flex-1 min-w-0 px-3 sm:px-9 py-3.5 rounded-2xl text-sm sm:text-base font-bold border transition-all text-slate-600 hover:border-emerald-400 hover:text-emerald-700 whitespace-nowrap"
+                  className="flex-1 px-3 sm:px-9 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold border transition-all text-slate-600 hover:border-emerald-400 hover:text-emerald-700 whitespace-nowrap"
                   style={{ borderColor: '#e2e8f0', background: '#ffffff' }}>
                   See a Sample
                 </button>
               </div>
 
               {/* Social proof — honest */}
-              <div style={rs(heroVisible, 280)} className="flex items-center gap-2 sm:gap-4">
+              <div style={rs(heroVisible, 280)} className="flex items-center flex-nowrap gap-2 sm:gap-4">
                 <div className="flex -space-x-1.5 sm:-space-x-2 flex-shrink-0">
                   {[
                     { initials: 'SC', bg: '#ECFDF5' },
@@ -470,7 +470,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
             </div>
 
             {/* Right — mock dashboard */}
-            <div style={rs(heroVisible, 180)} className="relative w-full max-w-[300px] sm:max-w-full mx-auto overflow-x-hidden lg:flex-1 lg:max-w-none mt-6 sm:mt-10 lg:mt-0">
+            <div style={rs(heroVisible, 180)} className="relative w-full max-w-sm sm:max-w-full mx-auto overflow-x-hidden lg:flex-1 lg:max-w-none mt-6 sm:mt-10 lg:mt-0">
               <MockDashboard visible={heroVisible} />
             </div>
           </div>
@@ -483,7 +483,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
           <div className="ticker-track">
             {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
               <span key={i}
-                className="inline-flex items-center gap-2 mx-2 sm:mx-4 px-4 py-2 rounded-full text-sm font-semibold text-slate-600 whitespace-nowrap"
+                className="inline-flex items-center gap-2 flex-shrink-0 mx-2 sm:mx-4 px-4 py-2 rounded-full text-sm font-semibold text-slate-600 whitespace-nowrap"
                 style={{ background: '#f8fafc', border: '1px solid #e2e8f0' }}>
                 <item.Icon className="w-4 h-4 text-emerald-600" />
                 {item.label}
@@ -495,7 +495,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
 
       {/* ── Stats ───────────────────────────────────────────────────── */}
       <div ref={statsRef} className="py-12 sm:py-14" style={{ background: '#f8fafc' }}>
-        <div className="max-w-4xl mx-auto grid grid-cols-4 gap-2 sm:gap-8 px-3 sm:px-6 text-center">
+        <div className="max-w-4xl mx-auto grid grid-cols-4 gap-2 sm:gap-8 px-4 sm:px-6 text-center">
           {[
             { val: '< 60s', label: 'Generation Time' },
             { val: '95%',   label: 'Satisfaction Rate' },
@@ -503,15 +503,15 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
             { val: '$0',    label: 'To Get Started' },
           ].map((s, i) => (
             <div key={s.label} style={rs(statsVisible, i * 80)}>
-              <div className="text-xl sm:text-4xl font-black mb-0.5 sm:mb-1 gradient-text">{s.val}</div>
-              <div className="text-slate-500 text-[10px] leading-tight sm:text-sm">{s.label}</div>
+              <div className="text-2xl sm:text-4xl font-black mb-0.5 sm:mb-1 gradient-text">{s.val}</div>
+              <div className="text-slate-500 text-xs sm:text-sm">{s.label}</div>
             </div>
           ))}
         </div>
       </div>
 
       {/* ── Features grid ───────────────────────────────────────────── */}
-      <section ref={featuresRef} className="py-14 sm:py-20 px-5 sm:px-6" style={{ background: '#ffffff' }}>
+      <section ref={featuresRef} className="py-14 sm:py-20 px-4 sm:px-6" style={{ background: '#ffffff' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12" style={rs(featuresVisible)}>
             <p className="text-sm sm:text-xs font-bold tracking-widest uppercase mb-2.5" style={{ color: '#059669' }}>What You Get</p>
@@ -539,7 +539,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
       </section>
 
       {/* ── How It Works ────────────────────────────────────────────── */}
-      <section className="py-14 sm:py-20 px-5 sm:px-6" style={{ background: '#f8fafc' }}>
+      <section className="py-14 sm:py-20 px-4 sm:px-6" style={{ background: '#f8fafc' }}>
         <div className="max-w-2xl mx-auto">
           <div ref={stepsRef}>
             <div className="text-center mb-12" style={rs(stepsVisible)}>
@@ -582,7 +582,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
       </section>
 
       {/* ── Pricing ─────────────────────────────────────────────────── */}
-      <section ref={pricingRef} className="py-14 sm:py-20 px-5 sm:px-6" style={{ background: '#ffffff' }}>
+      <section ref={pricingRef} className="py-14 sm:py-20 px-4 sm:px-6" style={{ background: '#ffffff' }}>
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12" style={rs(pricingVisible)}>
             <p className="text-sm sm:text-xs font-bold tracking-widest uppercase mb-2.5" style={{ color: '#059669' }}>Pricing</p>
@@ -594,7 +594,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* Free */}
-            <div style={rs(pricingVisible, 0)} className="pricing-card p-6 sm:p-7">
+            <div style={rs(pricingVisible, 0)} className="pricing-card p-5 sm:p-7">
               <div className="mb-6">
                 <p className="text-sm sm:text-xs font-bold tracking-widest uppercase text-slate-400 mb-2">Free</p>
                 <div className="flex items-end gap-1">
@@ -626,12 +626,12 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
             </div>
 
             {/* Pro */}
-            <div style={rs(pricingVisible, 100)} className="pricing-card featured p-6 sm:p-7 relative overflow-hidden">
+            <div style={rs(pricingVisible, 100)} className="pricing-card featured p-5 sm:p-7 relative overflow-hidden">
               <div className="absolute top-4 right-4 sm:top-5 sm:right-5 rounded-full px-3 py-1 text-xs font-bold"
                 style={{ background: 'rgba(255,255,255,0.15)', color: '#d1fae5', border: '1px solid rgba(255,255,255,0.2)' }}>
                 Most Popular
               </div>
-              <div className="mb-6 pt-10 sm:pt-0">
+              <div className="mb-6 pt-8 sm:pt-0">
                 <p className="text-sm sm:text-xs font-bold tracking-widest uppercase mb-2" style={{ color: '#6ee7b7' }}>Pro</p>
                 <div className="flex items-end gap-1">
                   <span className="text-5xl font-black text-white">$19</span>
@@ -659,7 +659,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
       </section>
 
       {/* ── What Gets Generated ─────────────────────────────────────── */}
-      <section ref={testimonialsRef} className="py-14 sm:py-20 px-5 sm:px-6" style={{ background: '#f8fafc' }}>
+      <section ref={testimonialsRef} className="py-14 sm:py-20 px-4 sm:px-6" style={{ background: '#f8fafc' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12" style={rs(testimonialsVisible)}>
             <p className="text-sm sm:text-xs font-bold tracking-widest uppercase mb-2.5" style={{ color: '#059669' }}>Examples</p>
@@ -733,7 +733,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
       </section>
 
       {/* ── CTA Banner ──────────────────────────────────────────────── */}
-      <section ref={ctaRef} className="py-14 sm:py-20 px-5 sm:px-6"
+      <section ref={ctaRef} className="py-14 sm:py-20 px-4 sm:px-6"
         style={{ background: 'linear-gradient(135deg, #065F46 0%, #047857 55%, #059669 100%)' }}>
         <div style={rs(ctaVisible)} className="max-w-2xl mx-auto text-center">
           <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-7"
