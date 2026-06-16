@@ -191,7 +191,7 @@ function MockDashboard({ visible }) {
           <div className="w-3 h-3 rounded-full bg-yellow-400" />
           <div className="w-3 h-3 rounded-full bg-green-400" />
         </div>
-        <div className="flex-1 rounded-md px-3 py-1 text-center text-xs font-mono text-slate-400"
+        <div className="flex-1 min-w-0 rounded-md px-3 py-1 text-center text-xs font-mono text-slate-400 truncate"
           style={{ background: '#ffffff', border: '1px solid #e2e8f0' }}>
           app.tactiply.com/strategy/bakery
         </div>
@@ -426,12 +426,12 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
 
               <div style={rs(heroVisible, 210)} className="flex flex-row w-full gap-3 mb-7">
                 <button onClick={openModal}
-                  className="emerald-btn flex-1 px-3 sm:px-9 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-black whitespace-nowrap">
+                  className="emerald-btn flex-1 px-3 sm:px-9 py-3 sm:py-3.5 rounded-2xl text-xs sm:text-base font-black whitespace-nowrap">
                   <span>Get My Free Strategy</span>
                 </button>
                 <button
                   onClick={() => { onClearError(); onShowSample(); }}
-                  className="flex-1 px-3 sm:px-9 py-3 sm:py-3.5 rounded-2xl text-sm sm:text-base font-bold border transition-all text-slate-600 hover:border-emerald-400 hover:text-emerald-700 whitespace-nowrap"
+                  className="flex-1 px-3 sm:px-9 py-3 sm:py-3.5 rounded-2xl text-xs sm:text-base font-bold border transition-all text-slate-600 hover:border-emerald-400 hover:text-emerald-700 whitespace-nowrap"
                   style={{ borderColor: '#e2e8f0', background: '#ffffff' }}>
                   See a Sample
                 </button>
