@@ -426,12 +426,12 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
 
               <div style={rs(heroVisible, 210)} className="flex flex-col sm:flex-row gap-3 mb-7">
                 <button onClick={openModal}
-                  className="emerald-btn px-9 py-3.5 rounded-2xl text-base font-black">
+                  className="emerald-btn w-full sm:w-auto px-9 py-3.5 rounded-2xl text-base font-black">
                   <span>Get My Free Strategy</span>
                 </button>
                 <button
                   onClick={() => { onClearError(); onShowSample(); }}
-                  className="px-9 py-3.5 rounded-2xl text-base font-bold border transition-all text-slate-600 hover:border-emerald-400 hover:text-emerald-700"
+                  className="w-full sm:w-auto px-9 py-3.5 rounded-2xl text-base font-bold border transition-all text-slate-600 hover:border-emerald-400 hover:text-emerald-700"
                   style={{ borderColor: '#e2e8f0', background: '#ffffff' }}>
                   See a Sample
                 </button>
@@ -455,7 +455,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
                 </div>
                 <div>
                   <Stars n={5} />
-                  <p className="text-sm text-slate-500 mt-0.5">
+                  <p className="text-base sm:text-sm text-slate-500 mt-0.5">
                     <span className="font-bold text-slate-700">Powered by Claude AI</span> — Real strategies for real businesses
                   </p>
                 </div>
@@ -494,7 +494,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
       </div>
 
       {/* ── Stats ───────────────────────────────────────────────────── */}
-      <div ref={statsRef} className="py-10 sm:py-14" style={{ background: '#f8fafc' }}>
+      <div ref={statsRef} className="py-12 sm:py-14" style={{ background: '#f8fafc' }}>
         <div className="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-8 px-6 text-center">
           {[
             { val: '< 60s', label: 'Generation Time' },
@@ -504,7 +504,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
           ].map((s, i) => (
             <div key={s.label} style={rs(statsVisible, i * 80)}>
               <div className="text-4xl font-black mb-1 gradient-text">{s.val}</div>
-              <div className="text-slate-500 text-sm">{s.label}</div>
+              <div className="text-slate-500 text-base sm:text-sm">{s.label}</div>
             </div>
           ))}
         </div>
@@ -514,7 +514,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
       <section ref={featuresRef} className="py-14 sm:py-20 px-5 sm:px-6" style={{ background: '#ffffff' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12" style={rs(featuresVisible)}>
-            <p className="text-xs font-bold tracking-widest uppercase mb-2.5" style={{ color: '#059669' }}>What You Get</p>
+            <p className="text-sm sm:text-xs font-bold tracking-widest uppercase mb-2.5" style={{ color: '#059669' }}>What You Get</p>
             <h2 className="text-3xl sm:text-4xl font-black mb-3" style={{ color: '#065F46' }}>
               Everything You Need to<br />Market Your Business
             </h2>
@@ -525,13 +525,13 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-4">
             {FEATURES.map((f, i) => (
               <div key={i} style={rs(featuresVisible, (i % 4) * 70)}
-                className={`feature-card p-5 sm:p-6 cursor-default group${i === 8 ? ' lg:col-start-2' : ''}`}>
+                className={`feature-card p-6 cursor-default group${i === 8 ? ' lg:col-start-2' : ''}`}>
                 <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110"
                   style={{ background: f.bg, border: `1px solid ${f.bd}` }}>
                   <f.Icon className="w-5 h-5" style={{ color: f.iconColor }} />
                 </div>
                 <h3 className="font-bold text-slate-900 mb-2 text-base sm:text-sm">{f.title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{f.desc}</p>
+                <p className="text-slate-500 text-base sm:text-sm leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -543,7 +543,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
         <div className="max-w-2xl mx-auto">
           <div ref={stepsRef}>
             <div className="text-center mb-12" style={rs(stepsVisible)}>
-              <p className="text-xs font-bold tracking-widest uppercase mb-2.5" style={{ color: '#059669' }}>Process</p>
+              <p className="text-sm sm:text-xs font-bold tracking-widest uppercase mb-2.5" style={{ color: '#059669' }}>Process</p>
               <h2 className="text-3xl sm:text-4xl font-black mb-3" style={{ color: '#065F46' }}>
                 How Tactiply Works
               </h2>
@@ -568,10 +568,10 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
                       style={{ background: 'linear-gradient(135deg,#059669,#047857)', boxShadow: '0 6px 20px rgba(5,150,105,0.28)' }}>
                       {s.n}
                     </div>
-                    <div className="flex-1 bg-white rounded-2xl p-5"
+                    <div className="flex-1 bg-white rounded-2xl p-6 sm:p-5"
                       style={{ border: '1px solid #e2e8f0', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
                       <h3 className="font-bold text-lg mb-1.5" style={{ color: '#065F46' }}>{s.title}</h3>
-                      <p className="text-slate-500 text-sm leading-relaxed">{s.desc}</p>
+                      <p className="text-slate-500 text-base sm:text-sm leading-relaxed">{s.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -585,7 +585,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
       <section ref={pricingRef} className="py-14 sm:py-20 px-5 sm:px-6" style={{ background: '#ffffff' }}>
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12" style={rs(pricingVisible)}>
-            <p className="text-xs font-bold tracking-widest uppercase mb-2.5" style={{ color: '#059669' }}>Pricing</p>
+            <p className="text-sm sm:text-xs font-bold tracking-widest uppercase mb-2.5" style={{ color: '#059669' }}>Pricing</p>
             <h2 className="text-3xl sm:text-4xl font-black mb-3" style={{ color: '#065F46' }}>
               Simple, Transparent Pricing
             </h2>
@@ -594,54 +594,54 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* Free */}
-            <div style={rs(pricingVisible, 0)} className="pricing-card p-5 sm:p-7">
+            <div style={rs(pricingVisible, 0)} className="pricing-card p-6 sm:p-7">
               <div className="mb-6">
-                <p className="text-xs font-bold tracking-widest uppercase text-slate-400 mb-2">Free</p>
+                <p className="text-sm sm:text-xs font-bold tracking-widest uppercase text-slate-400 mb-2">Free</p>
                 <div className="flex items-end gap-1">
                   <span className="text-5xl font-black text-slate-900">$0</span>
-                  <span className="text-slate-400 mb-2 text-sm">/month</span>
+                  <span className="text-slate-400 mb-2 text-base sm:text-sm">/month</span>
                 </div>
-                <p className="text-slate-500 text-sm mt-1.5">Perfect for getting started</p>
+                <p className="text-slate-500 text-base sm:text-sm mt-1.5">Perfect for getting started</p>
               </div>
               <ul className="space-y-3 mb-5 sm:mb-7">
                 {PRICING_FREE.map(item => (
-                  <li key={item.text} className="flex items-center gap-2.5 text-sm"
+                  <li key={item.text} className="flex items-center gap-2.5 text-base sm:text-sm"
                     style={{ color: item.access === 'locked' ? '#cbd5e1' : item.access === 'partial' ? '#64748b' : '#475569' }}>
                     {item.access === 'locked'  && <LockIcon />}
                     {item.access === 'partial' && <PartialIcon />}
                     {item.access === 'full'    && <CheckIcon />}
                     <span>{item.text}</span>
                     {item.access === 'locked' && (
-                      <span className="ml-auto text-[10px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded"
+                      <span className="ml-auto text-xs sm:text-[10px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded"
                         style={{ background: '#f1f5f9', color: '#94a3b8' }}>Pro</span>
                     )}
                   </li>
                 ))}
               </ul>
               <button onClick={openModal}
-                className="w-full py-3.5 rounded-xl font-bold text-sm border-2 transition-all hover:bg-emerald-50"
+                className="w-full py-3.5 rounded-xl font-bold text-base sm:text-sm border-2 transition-all hover:bg-emerald-50"
                 style={{ borderColor: '#059669', color: '#059669' }}>
                 Get Started Free
               </button>
             </div>
 
             {/* Pro */}
-            <div style={rs(pricingVisible, 100)} className="pricing-card featured p-5 sm:p-7 relative overflow-hidden">
+            <div style={rs(pricingVisible, 100)} className="pricing-card featured p-6 sm:p-7 relative overflow-hidden">
               <div className="absolute top-4 right-4 sm:top-5 sm:right-5 rounded-full px-3 py-1 text-xs font-bold"
                 style={{ background: 'rgba(255,255,255,0.15)', color: '#d1fae5', border: '1px solid rgba(255,255,255,0.2)' }}>
                 Most Popular
               </div>
               <div className="mb-6 pt-8 sm:pt-0">
-                <p className="text-xs font-bold tracking-widest uppercase mb-2" style={{ color: '#6ee7b7' }}>Pro</p>
+                <p className="text-sm sm:text-xs font-bold tracking-widest uppercase mb-2" style={{ color: '#6ee7b7' }}>Pro</p>
                 <div className="flex items-end gap-1">
                   <span className="text-5xl font-black text-white">$19</span>
-                  <span className="mb-2 text-sm" style={{ color: '#6ee7b7' }}>/month</span>
+                  <span className="mb-2 text-base sm:text-sm" style={{ color: '#6ee7b7' }}>/month</span>
                 </div>
-                <p className="text-sm mt-1.5" style={{ color: '#a7f3d0' }}>For serious business owners</p>
+                <p className="text-base sm:text-sm mt-1.5" style={{ color: '#a7f3d0' }}>For serious business owners</p>
               </div>
               <ul className="space-y-3 mb-5 sm:mb-7">
                 {PRICING_PRO.map(item => (
-                  <li key={item.text} className="flex items-center gap-2.5 text-sm"
+                  <li key={item.text} className="flex items-center gap-2.5 text-base sm:text-sm"
                     style={{ color: item.highlight ? '#ffffff' : '#d1fae5', fontWeight: item.highlight ? 800 : 400 }}>
                     <CheckIcon dark />
                     {item.text}
@@ -649,7 +649,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
                 ))}
               </ul>
               <button onClick={onShowWaitlist}
-                className="w-full py-3.5 rounded-xl font-bold text-sm text-emerald-700 transition-all hover:scale-[1.02]"
+                className="w-full py-3.5 rounded-xl font-bold text-base sm:text-sm text-emerald-700 transition-all hover:scale-[1.02]"
                 style={{ background: '#ffffff', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }}>
                 Join Waitlist
               </button>
@@ -662,7 +662,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
       <section ref={testimonialsRef} className="py-14 sm:py-20 px-5 sm:px-6" style={{ background: '#f8fafc' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12" style={rs(testimonialsVisible)}>
-            <p className="text-xs font-bold tracking-widest uppercase mb-2.5" style={{ color: '#059669' }}>Examples</p>
+            <p className="text-sm sm:text-xs font-bold tracking-widest uppercase mb-2.5" style={{ color: '#059669' }}>Examples</p>
             <h2 className="text-3xl sm:text-4xl font-black mb-3" style={{ color: '#065F46' }}>
               What Gets Generated<br />For You
             </h2>
@@ -673,7 +673,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {OUTCOMES.map((c, i) => (
               <div key={i}
-                className="bg-white rounded-2xl p-5 flex flex-col gap-4"
+                className="bg-white rounded-2xl p-6 sm:p-5 flex flex-col gap-4"
                 style={{ border: '1px solid #e2e8f0', boxShadow: '0 2px 16px rgba(0,0,0,0.04)', ...rs(testimonialsVisible, i * 100) }}>
 
                 {/* Card header */}
@@ -683,10 +683,10 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
                     <c.Icon className="w-5 h-5" style={{ color: c.iconColor }} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-bold text-slate-900 text-sm">{c.business}</p>
-                    <p className="text-slate-400 text-xs truncate">{c.type}</p>
+                    <p className="font-bold text-slate-900 text-base sm:text-sm">{c.business}</p>
+                    <p className="text-slate-400 text-sm sm:text-xs truncate">{c.type}</p>
                   </div>
-                  <div className="flex-shrink-0 px-2 py-0.5 rounded-full text-xs font-black"
+                  <div className="flex-shrink-0 px-2 py-0.5 rounded-full text-sm sm:text-xs font-black"
                     style={{ background: '#ECFDF5', color: '#065F46', border: '1px solid #A7F3D0' }}>
                     {c.score}/100
                   </div>
@@ -694,10 +694,10 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
 
                 {/* SEO keywords */}
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: '#94a3b8' }}>SEO Keywords</p>
+                  <p className="text-sm sm:text-xs font-bold uppercase tracking-wider mb-2" style={{ color: '#94a3b8' }}>SEO Keywords</p>
                   <div className="flex flex-wrap gap-1.5">
                     {c.keywords.map(kw => (
-                      <span key={kw} className="text-xs px-2 py-0.5 rounded-full"
+                      <span key={kw} className="text-sm sm:text-xs px-2.5 sm:px-2 py-0.5 rounded-full"
                         style={{ background: '#f8fafc', border: '1px solid #e2e8f0', color: '#475569' }}>
                         {kw}
                       </span>
@@ -707,7 +707,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
 
                 {/* Strategy highlights */}
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: '#94a3b8' }}>Strategy Highlights</p>
+                  <p className="text-sm sm:text-xs font-bold uppercase tracking-wider mb-2" style={{ color: '#94a3b8' }}>Strategy Highlights</p>
                   <div className="space-y-1.5">
                     {c.highlights.map(h => (
                       <div key={h.text} className="flex items-center gap-2">
@@ -715,7 +715,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
                           style={{ background: h.lbg, color: h.lc }}>
                           {h.label}
                         </span>
-                        <span className="text-xs text-slate-600 leading-tight">{h.text}</span>
+                        <span className="text-sm sm:text-xs text-slate-600 leading-tight">{h.text}</span>
                       </div>
                     ))}
                   </div>
@@ -723,8 +723,8 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
 
                 {/* Audience */}
                 <div className="flex items-center gap-1.5 pt-3 border-t border-slate-100">
-                  <span className="text-xs font-semibold" style={{ color: '#94a3b8' }}>Target:</span>
-                  <span className="text-xs text-slate-500">{c.audience}</span>
+                  <span className="text-sm sm:text-xs font-semibold" style={{ color: '#94a3b8' }}>Target:</span>
+                  <span className="text-sm sm:text-xs text-slate-500">{c.audience}</span>
                 </div>
               </div>
             ))}
@@ -747,11 +747,11 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
             Stop guessing and start marketing with a plan — AI-powered strategies built for your exact business. No agency, no consultant.
           </p>
           <button onClick={openModal}
-            className="px-12 py-4 rounded-2xl text-lg font-black text-emerald-700 transition-all hover:scale-[1.02]"
+            className="w-full sm:w-auto px-12 py-4 rounded-2xl text-lg font-black text-emerald-700 transition-all hover:scale-[1.02]"
             style={{ background: '#ffffff', boxShadow: '0 8px 28px rgba(0,0,0,0.14)' }}>
             Get My Free Strategy
           </button>
-          <p className="mt-5 text-sm" style={{ color: '#6ee7b7' }}>No credit card · No sign-up · Instant results</p>
+          <p className="mt-5 text-base sm:text-sm" style={{ color: '#6ee7b7' }}>No credit card · No sign-up · Instant results</p>
         </div>
       </section>
 
@@ -776,7 +776,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
                 </div>
                 <span className="font-black text-xl tracking-tight text-white">Tactiply</span>
               </div>
-              <p className="text-sm leading-relaxed" style={{ color: '#64748b', maxWidth: 220 }}>
+              <p className="text-base sm:text-sm leading-relaxed" style={{ color: '#64748b', maxWidth: 260 }}>
                 AI-powered marketing strategies for small businesses. Free. Instant. No fluff.
               </p>
             </div>
@@ -795,13 +795,13 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
           </div>
 
           {/* Link columns */}
-          <div className="grid grid-cols-2 gap-10 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10 mb-12">
             <div>
-              <p className="text-xs font-bold tracking-widest uppercase mb-5" style={{ color: '#34d399' }}>Product</p>
+              <p className="text-sm sm:text-xs font-bold tracking-widest uppercase mb-5" style={{ color: '#34d399' }}>Product</p>
               <ul className="space-y-3.5">
                 {['How it Works', 'Pricing'].map(link => (
                   <li key={link}>
-                    <a href="#" className="footer-link group flex items-center gap-1.5 text-sm font-medium">
+                    <a href="#" className="footer-link group flex items-center gap-1.5 text-base sm:text-sm font-medium">
                       <ArrowRight className="w-3 h-3 text-emerald-400 opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0" />
                       {link}
                     </a>
@@ -809,7 +809,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
                 ))}
                 <li>
                   <button onClick={() => { onClearError(); onShowSample(); }}
-                    className="footer-link group flex items-center gap-1.5 text-sm font-medium text-left">
+                    className="footer-link group flex items-center gap-1.5 text-base sm:text-sm font-medium text-left">
                     <ArrowRight className="w-3 h-3 text-emerald-400 opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0" />
                     See a Sample
                   </button>
@@ -817,11 +817,11 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
               </ul>
             </div>
             <div>
-              <p className="text-xs font-bold tracking-widest uppercase mb-5" style={{ color: '#34d399' }}>Company</p>
+              <p className="text-sm sm:text-xs font-bold tracking-widest uppercase mb-5" style={{ color: '#34d399' }}>Company</p>
               <ul className="space-y-3.5">
                 {['About', 'Contact', 'FAQ', 'Privacy Policy'].map(link => (
                   <li key={link}>
-                    <a href="#" className="footer-link group flex items-center gap-1.5 text-sm font-medium">
+                    <a href="#" className="footer-link group flex items-center gap-1.5 text-base sm:text-sm font-medium">
                       <ArrowRight className="w-3 h-3 text-emerald-400 opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0" />
                       {link}
                     </a>
@@ -853,7 +853,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
                 href="https://buymeacoffee.com/tactiply"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-semibold"
+                className="text-sm sm:text-xs font-semibold"
                 style={{ color: '#64748b', textDecoration: 'none', transition: 'color 0.2s ease' }}
                 onMouseEnter={e => e.currentTarget.style.color = '#34d399'}
                 onMouseLeave={e => e.currentTarget.style.color = '#64748b'}
