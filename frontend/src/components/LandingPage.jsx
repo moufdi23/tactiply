@@ -392,7 +392,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
       </nav>
 
       {/* ── Hero ────────────────────────────────────────────────────── */}
-      <section ref={heroRef} className="relative pt-24 pb-0 px-6 overflow-hidden"
+      <section ref={heroRef} className="relative pt-24 pb-0 px-6 overflow-hidden overflow-x-hidden"
         style={{ background: 'linear-gradient(160deg, #ECFDF5 0%, #f8fafc 50%)' }}>
 
         {/* Decorative background */}
@@ -414,7 +414,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
               </div>
 
               <h1 style={{ color: '#065F46', ...rs(heroVisible, 70) }}
-                className="text-4xl sm:text-5xl lg:text-[3.4rem] font-black leading-[1.06] mb-5 tracking-tight">
+                className="text-2xl sm:text-5xl lg:text-[3.4rem] font-black leading-tight sm:leading-[1.06] mb-5 tracking-tight">
                 Your Complete<br />
                 Marketing Strategy<br />
                 <span className="gradient-text">in 60 Seconds Flat.</span>
@@ -424,14 +424,14 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
                 Describe your business in one sentence. Our AI builds a full marketing playbook — social content, email templates, ad copy, SEO keywords, and your marketing score. Free. Instant.
               </p>
 
-              <div style={rs(heroVisible, 210)} className="flex flex-col sm:flex-row gap-3 mb-7">
+              <div style={rs(heroVisible, 210)} className="flex flex-row gap-2 sm:gap-3 mb-7">
                 <button onClick={openModal}
-                  className="emerald-btn w-full sm:w-auto px-9 py-3.5 rounded-2xl text-base font-black">
+                  className="emerald-btn flex-1 min-w-0 px-3 sm:px-9 py-3.5 rounded-2xl text-sm sm:text-base font-black">
                   <span>Get My Free Strategy</span>
                 </button>
                 <button
                   onClick={() => { onClearError(); onShowSample(); }}
-                  className="w-full sm:w-auto px-9 py-3.5 rounded-2xl text-base font-bold border transition-all text-slate-600 hover:border-emerald-400 hover:text-emerald-700"
+                  className="flex-1 min-w-0 px-3 sm:px-9 py-3.5 rounded-2xl text-sm sm:text-base font-bold border transition-all text-slate-600 hover:border-emerald-400 hover:text-emerald-700"
                   style={{ borderColor: '#e2e8f0', background: '#ffffff' }}>
                   See a Sample
                 </button>
@@ -470,7 +470,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
             </div>
 
             {/* Right — mock dashboard */}
-            <div style={rs(heroVisible, 180)} className="relative w-full lg:flex-1 mt-10 lg:mt-0">
+            <div style={rs(heroVisible, 180)} className="relative w-full max-w-full overflow-x-hidden lg:flex-1 mt-10 lg:mt-0">
               <MockDashboard visible={heroVisible} />
             </div>
           </div>
@@ -495,7 +495,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
 
       {/* ── Stats ───────────────────────────────────────────────────── */}
       <div ref={statsRef} className="py-12 sm:py-14" style={{ background: '#f8fafc' }}>
-        <div className="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-8 px-6 text-center">
+        <div className="max-w-4xl mx-auto grid grid-cols-4 gap-2 sm:gap-8 px-3 sm:px-6 text-center">
           {[
             { val: '< 60s', label: 'Generation Time' },
             { val: '95%',   label: 'Satisfaction Rate' },
@@ -503,8 +503,8 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
             { val: '$0',    label: 'To Get Started' },
           ].map((s, i) => (
             <div key={s.label} style={rs(statsVisible, i * 80)}>
-              <div className="text-4xl font-black mb-1 gradient-text">{s.val}</div>
-              <div className="text-slate-500 text-base sm:text-sm">{s.label}</div>
+              <div className="text-xl sm:text-4xl font-black mb-0.5 sm:mb-1 gradient-text">{s.val}</div>
+              <div className="text-slate-500 text-[10px] leading-tight sm:text-sm">{s.label}</div>
             </div>
           ))}
         </div>
@@ -522,16 +522,16 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
               One AI session generates your entire marketing toolkit
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {FEATURES.map((f, i) => (
               <div key={i} style={rs(featuresVisible, (i % 4) * 70)}
-                className={`feature-card p-6 cursor-default group${i === 8 ? ' lg:col-start-2' : ''}`}>
-                <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110"
+                className={`feature-card p-3 sm:p-6 cursor-default group${i === 8 ? ' lg:col-start-2' : ''}`}>
+                <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center mb-2 sm:mb-4 transition-transform duration-300 group-hover:scale-110"
                   style={{ background: f.bg, border: `1px solid ${f.bd}` }}>
-                  <f.Icon className="w-5 h-5" style={{ color: f.iconColor }} />
+                  <f.Icon className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: f.iconColor }} />
                 </div>
-                <h3 className="font-bold text-slate-900 mb-2 text-base sm:text-sm">{f.title}</h3>
-                <p className="text-slate-500 text-base sm:text-sm leading-relaxed">{f.desc}</p>
+                <h3 className="font-bold text-slate-900 mb-1 sm:mb-2 text-xs sm:text-sm">{f.title}</h3>
+                <p className="text-slate-500 text-xs sm:text-sm leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>

@@ -141,6 +141,20 @@ body {
 }
 .ticker-track:hover { animation-play-state: paused; }
 
+/* ── Ticker — mobile: manual scroll, desktop: animated ── */
+@media (max-width: 639px) {
+  .ticker-wrap {
+    overflow-x: auto;
+    overflow-y: hidden;
+    mask-image: none;
+    -webkit-mask-image: none;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .ticker-wrap::-webkit-scrollbar { display: none; }
+  .ticker-track { animation: none; }
+}
+
 /* ── Scroll reveal ── */
 .reveal {
   opacity: 0;
