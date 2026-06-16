@@ -470,7 +470,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
             </div>
 
             {/* Right — mock dashboard */}
-            <div style={rs(heroVisible, 180)} className="relative w-full max-w-sm sm:max-w-full mx-auto overflow-x-hidden lg:flex-1 lg:max-w-none mt-6 sm:mt-10 lg:mt-0">
+            <div style={rs(heroVisible, 180)} className="relative w-full max-w-[280px] sm:max-w-full mx-auto overflow-x-hidden lg:flex-1 lg:max-w-none mt-6 sm:mt-10 lg:mt-0">
               <MockDashboard visible={heroVisible} />
             </div>
           </div>
