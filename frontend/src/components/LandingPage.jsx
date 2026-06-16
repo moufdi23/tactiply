@@ -414,7 +414,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
               </div>
 
               <h1 style={{ color: '#065F46', ...rs(heroVisible, 70) }}
-                className="text-2xl sm:text-5xl lg:text-[3.4rem] font-black leading-tight sm:leading-[1.06] mb-5 tracking-tight">
+                className="text-[2rem] sm:text-5xl lg:text-[3.4rem] font-black leading-[1.15] sm:leading-[1.06] mb-5 tracking-tight">
                 Your Complete<br />
                 Marketing Strategy<br />
                 <span className="gradient-text">in 60 Seconds Flat.</span>
@@ -426,20 +426,20 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
 
               <div style={rs(heroVisible, 210)} className="flex flex-row gap-2 sm:gap-3 mb-7">
                 <button onClick={openModal}
-                  className="emerald-btn flex-1 min-w-0 px-3 sm:px-9 py-3.5 rounded-2xl text-sm sm:text-base font-black">
+                  className="emerald-btn flex-1 min-w-0 px-3 sm:px-9 py-3.5 rounded-2xl text-sm sm:text-base font-black whitespace-nowrap">
                   <span>Get My Free Strategy</span>
                 </button>
                 <button
                   onClick={() => { onClearError(); onShowSample(); }}
-                  className="flex-1 min-w-0 px-3 sm:px-9 py-3.5 rounded-2xl text-sm sm:text-base font-bold border transition-all text-slate-600 hover:border-emerald-400 hover:text-emerald-700"
+                  className="flex-1 min-w-0 px-3 sm:px-9 py-3.5 rounded-2xl text-sm sm:text-base font-bold border transition-all text-slate-600 hover:border-emerald-400 hover:text-emerald-700 whitespace-nowrap"
                   style={{ borderColor: '#e2e8f0', background: '#ffffff' }}>
                   See a Sample
                 </button>
               </div>
 
               {/* Social proof — honest */}
-              <div style={rs(heroVisible, 280)} className="flex items-center gap-4">
-                <div className="flex -space-x-2">
+              <div style={rs(heroVisible, 280)} className="flex items-center gap-2 sm:gap-4">
+                <div className="flex -space-x-1.5 sm:-space-x-2 flex-shrink-0">
                   {[
                     { initials: 'SC', bg: '#ECFDF5' },
                     { initials: 'JK', bg: '#EFF6FF' },
@@ -447,15 +447,15 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
                     { initials: 'MR', bg: '#FEF2F2' },
                     { initials: 'TH', bg: '#FFFBEB' },
                   ].map((a, i) => (
-                    <div key={i} className="w-9 h-9 rounded-full border-2 border-white flex items-center justify-center text-xs font-black"
+                    <div key={i} className="w-7 h-7 sm:w-9 sm:h-9 rounded-full border-2 border-white flex items-center justify-center text-xs font-black"
                       style={{ background: a.bg, color: '#065F46' }}>
                       {a.initials}
                     </div>
                   ))}
                 </div>
-                <div>
+                <div className="min-w-0">
                   <Stars n={5} />
-                  <p className="text-base sm:text-sm text-slate-500 mt-0.5">
+                  <p className="text-sm text-slate-500 mt-0.5">
                     <span className="font-bold text-slate-700">Powered by Claude AI</span> — Real strategies for real businesses
                   </p>
                 </div>
@@ -470,7 +470,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
             </div>
 
             {/* Right — mock dashboard */}
-            <div style={rs(heroVisible, 180)} className="relative w-full max-w-full overflow-x-hidden lg:flex-1 mt-10 lg:mt-0">
+            <div style={rs(heroVisible, 180)} className="relative w-full max-w-[300px] sm:max-w-full mx-auto overflow-x-hidden lg:flex-1 lg:max-w-none mt-6 sm:mt-10 lg:mt-0">
               <MockDashboard visible={heroVisible} />
             </div>
           </div>
@@ -483,7 +483,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
           <div className="ticker-track">
             {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
               <span key={i}
-                className="inline-flex items-center gap-2 mx-4 px-4 py-2 rounded-full text-sm font-semibold text-slate-600 whitespace-nowrap"
+                className="inline-flex items-center gap-2 mx-2 sm:mx-4 px-4 py-2 rounded-full text-sm font-semibold text-slate-600 whitespace-nowrap"
                 style={{ background: '#f8fafc', border: '1px solid #e2e8f0' }}>
                 <item.Icon className="w-4 h-4 text-emerald-600" />
                 {item.label}
@@ -631,7 +631,7 @@ export default function LandingPage({ onGetStarted, onShowSample, onShowWaitlist
                 style={{ background: 'rgba(255,255,255,0.15)', color: '#d1fae5', border: '1px solid rgba(255,255,255,0.2)' }}>
                 Most Popular
               </div>
-              <div className="mb-6 pt-8 sm:pt-0">
+              <div className="mb-6 pt-10 sm:pt-0">
                 <p className="text-sm sm:text-xs font-bold tracking-widest uppercase mb-2" style={{ color: '#6ee7b7' }}>Pro</p>
                 <div className="flex items-end gap-1">
                   <span className="text-5xl font-black text-white">$19</span>
