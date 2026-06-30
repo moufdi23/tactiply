@@ -313,13 +313,16 @@ tactiply/
 
 **Built by [Moufdi Ben Saadoune](https://github.com/moufdi23)**
 
-I'm a junior full-stack developer who built Tactiply from scratch — frontend, backend, AI integration, and deployment — as a real product, not just a portfolio piece.
+I'm a Full Stack Developer and AI Engineer who built Tactiply from scratch — frontend, backend, AI integration, and deployment — as a real, production-ready product, not just a portfolio piece.
+My focus is on building practical applications powered by the Claude API, combining solid full stack fundamentals with hands-on AI integration to create tools that actually solve problems for real users.
 
 **Certifications & Education:**
 - Certified Full Stack Web Developer — [4Geeks Academy](https://4geeksacademy.com/)
+- AI Fluency: Framework & Foundations — Anthropic Academy
+- Claude 101 — Anthropic Academy
 - Google Digital Marketing & E-commerce Certificate — Google
 
-I'm open to junior full-stack or frontend roles. If you like what you see here, let's connect.
+I'm open to full stack and AI engineering roles. If you like what you see here, let's connect.
 
 📧 [moufdi.bensaadoune.dev@gmail.com](mailto:moufdibensaadoune1@gmail.com)
 🐙 [github.com/moufdi23](https://github.com/moufdi23)
